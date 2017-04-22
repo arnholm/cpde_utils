@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="CPDE_UTILS">
+		<Project filename="wx-config/wx-config.cbp" />
+		<Project filename="cpde_usr/cpde_usr.cbp">
+			<Depends filename="wx-config/wx-config.cbp" />
+		</Project>
+		<Project filename="Bmp2Xpm/Bmp2Xpm.cbp">
+			<Depends filename="cpde_usr/cpde_usr.cbp" />
+		</Project>
+		<Project filename="cpde_pwiz/cpde_pwiz.cbp">
+			<Depends filename="wx-config/wx-config.cbp" />
+			<Depends filename="cpde_usr/cpde_usr.cbp" />
+		</Project>
+		<Project filename="cpde_dummy_compiler/cpde_dummy_compiler.cbp" />
+		<Project filename="cpde_lic/cpde_lic.cbp" />
+	</Workspace>
+</CodeBlocks_workspace_file>

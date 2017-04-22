@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="%%%project_name_lowercase%%%"/>
+		<Option pch_mode="2"/>
+		<Option compiler="msvc"/>
+		<Build>
+			<Target title="MSVC_Debug">
+				<Option output=".cmp/msvc/bin/Debug/%%%project_name_lowercase%%%d" prefix_auto="0" extension_auto="1"/>
+				<Option object_output=".cmp/msvc/obj/Debug/"/>
+				<Option type="0"/>
+				<Option compiler="msvc"/>
+				<Option projectLinkerOptionsRelation="2"/>
+				<Compiler>
+					<Add option="/MDd"/>
+					<Add option="/Od"/>
+					<Add option="/RTCsu"/>
+					<Add option="/Fd$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).pdb"/>
+					<Add option="/GF"/>
+					<Add option="/EHsc"/>
+					<Add option="/W3"/>
+					<Add option="`$(CPDE_USR)\bin\wx-config.exe --prefix=$(#wx) --wxcfg=$(#wx.debug) --cxxflags`"/>
+					<Add option="/D_CRT_SECURE_NO_WARNINGS"/>
+					<Add option="/D_CRT_NONSTDC_NO_DEPRECATE"/>
+					<Add option="/D_CRT_SECURE_DEPRECATE"/>
+				</Compiler>
+				<Linker>
+					<Add library="msvcrtd.lib"/>
+					<Add library="gdiplus.lib"/>
+					<Add library="odbc32.lib"/>
+					<Add directory="$(#wx)\lib\vc_lib"/>
+					<Add option="`$(CPDE_USR)\bin\wx-config.exe  --prefix=$(#wx) --wxcfg=$(#wx.debug) --libs`"/>
+					<Add option="/SUBSYSTEM:WINDOWS"/>
+					<Add option="/NODEFAULTLIB:libcmt.lib"/>
+					<Add option="/NODEFAULTLIB:msvcrt.lib"/>
+					<Add option="/INCREMENTAL:NO"/>
+					<Add library="msvcrtd.lib"/>
+				</Linker>
+			</Target>
+			<Target title="MSVC_Release">
+				<Option output=".cmp/msvc/bin/Release/%%%project_name_lowercase%%%" prefix_auto="0" extension_auto="1"/>
+				<Option object_output=".cmp/msvc/obj/Release/"/>
+				<Option type="0"/>
+				<Option compiler="msvc"/>
+				<Option projectLinkerOptionsRelation="2"/>
+				<Compiler>
+					<Add option="/MD"/>
+					<Add option="/Ox"/>
+					<Add option="/GF"/>
+					<Add option="/EHsc"/>
+					<Add option="/W3"/>
+					<Add option="`$(CPDE_USR)\bin\wx-config.exe --prefix=$(#wx) --wxcfg=$(#wx.release) --cxxflags`"/>
+					<Add option="/D_CRT_SECURE_NO_WARNINGS"/>
+					<Add option="/D_CRT_NONSTDC_NO_DEPRECATE"/>
+					<Add option="/D_CRT_SECURE_DEPRECATE"/>
+				</Compiler>
+				<Linker>
+					<Add option="`$(CPDE_USR)\bin\wx-config.exe  --prefix=$(#wx) --wxcfg=$(#wx.release) --libs`"/>
+					<Add option="/SUBSYSTEM:WINDOWS"/>
+					<Add option="/NODEFAULTLIB:libcmtd.lib"/>
+					<Add option="/NODEFAULTLIB:msvcrtd.lib"/>
+					<Add option="/INCREMENTAL:NO"/>
+					<Add library="msvcrt.lib"/>
+				</Linker>
+				<ExtraCommands>
+					<Add after="$(CPDE_USR)\bin\cpde_usr -bin -xi -project=$(PROJECT_NAME)  -root=$(PROJECT_DIR)  -build=$(TARGET_NAME)  -target=$(TARGET_OUTPUT_FILE)  -usr=$(CPDE_USR)"/>
+				</ExtraCommands>
+			</Target>
+			<Target title="GCC_Debug">
+				<Option output=".cmp\gcc\%%%project_name_lowercase%%%d" prefix_auto="0" extension_auto="1"/>
+				<Option object_output=".cmp\gcc\obj\Debug\"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Option projectLinkerOptionsRelation="2"/>
+				<Compiler>
+					<Add option="-std=c++0x"/>
+					<Add option="-W"/>
+					<Add option="-fPIC"/>
+					<Add option="-DNOPCH"/>
+					<Add option="-fexceptions"/>
+					<Add option="-D_DEBUG"/>
+					<Add option="-g"/>
+					<Add option="`$(#wx.config) --cxxflags --debug`"/>
+				</Compiler>
+				<Linker>
+					<Add option="`$(#wx.config) --libs std,aui --static --debug`"/>
+				</Linker>
+			</Target>
+			<Target title="GCC_Release">
+				<Option output=".cmp\gcc\%%%project_name_lowercase%%%" prefix_auto="0" extension_auto="1"/>
+				<Option object_output=".cmp\gcc\obj\Release\"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Option projectLinkerOptionsRelation="2"/>
+				<Compiler>
+					<Add option="-std=c++0x"/>
+					<Add option="-W"/>
+					<Add option="-fPIC"/>
+					<Add option="-DNOPCH"/>
+					<Add option="-fexceptions"/>
+					<Add option="-Os"/>
+					<Add option="`$(#wx.config) --cxxflags`"/>
+				</Compiler>
+				<Linker>
+					<Add option="`$(#wx.config) --libs std,aui --static`"/>
+				</Linker>
+				<ExtraCommands>
+					<Add before="rm -f $(TARGET_OUTPUT_FILE)"/>
+					<Add after="upx $(TARGET_OUTPUT_FILE)"/>
+					<Add after="$(CPDE_USR)/bin/cpde_usr -bin -xi -project=$(PROJECT_NAME)  -root=$(PROJECT_DIR)  -build=$(TARGET_NAME)  -target=$(TARGET_OUTPUT_FILE)  -usr=$(CPDE_USR)"/>
+					<Mode after="always"/>
+				</ExtraCommands>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add directory="$(CPDE_USR)\include"/>
+			<Add directory="$(#boost.include)"/>
+		</Compiler>
+		<ResourceCompiler>
+			<Add directory="$(#wx)\include"/>
+		</ResourceCompiler>
+		<Linker>
+			<Add directory="$(CPDE_USR)\lib"/>
+			<Add directory="$(#boost.lib)"/>
+		</Linker>
+		<Unit filename="%%%project_name_lowercase%%%App.cpp"/>
+		<Unit filename="%%%project_name_lowercase%%%App.h"/>
+		<Unit filename="%%%project_name_lowercase%%%Main.cpp"/>
+		<Unit filename="%%%project_name_lowercase%%%Main.h"/>
+		<Unit filename="resource.rc">
+			<Option compilerVar="WINDRES"/>
+		</Unit>
+		<Unit filename="wxsmith/%%%project_name_lowercase%%%dialog.wxs"/>
+		<Extensions>
+			<code_completion/>
+			<envvars/>
+			<wxsmith version="1">
+				<gui name="wxWidgets" src="%%%project_name_lowercase%%%App.cpp" main="%%%project_name_lowercase%%%Dialog" init_handlers="necessary" language="CPP"/>
+				<resources>
+					<wxDialog wxs="wxsmith/%%%project_name_lowercase%%%dialog.wxs" src="%%%project_name_lowercase%%%Main.cpp" hdr="%%%project_name_lowercase%%%Main.h" fwddecl="0" i18n="1" name="%%%project_name_lowercase%%%Dialog" language="CPP"/>
+				</resources>
+			</wxsmith>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
