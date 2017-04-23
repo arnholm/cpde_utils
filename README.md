@@ -3,6 +3,8 @@ Cross Platform Development Envoronment (CPDE) utility applications
 
 CPDE is a C++ cross platform development environment based on the Code::Blocks IDE and build system. CPDE  depends on [wxWidgets](https://www.wxwidgets.org/) and [boost](http://www.boost.org/). CPDE supports Windows (MSVC compiler) and Linux. 
 
+See [Code::Blocks configuration of MSVC compiler tools and Windows SDK](doc/toolchain/CodeBlocks_MSVC_setup.pdf) for a description of how to configure Code::Blocks for CPDE using a MSVC compiler on Windows.
+
 ## cpde_utils applications
 * **cpde_pwiz** - Wizard application to generate a new CPDE-style Code::Blocks project 
   * can be run independently or used via the Code::Blocks Tools menu
