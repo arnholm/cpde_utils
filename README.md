@@ -73,3 +73,7 @@ cpde_lic inserts the text from the provided license file into the files matching
       -h            command line parameter help
       -r            Recursive file search
       -lic=<str>    license file    
+
+    
+## Bmp2Xpm 
+This is a stand-alone GUI application for image conversion. Useful for compiling image data such as icons into the application in a portable manner.
