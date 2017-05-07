@@ -79,3 +79,76 @@ cpde_lic inserts the text from the provided license file into the files matching
     
 ## Bmp2Xpm 
 This is a stand-alone GUI application for image conversion. Useful for compiling image data such as icons into the application in a portable manner.
+
+
+# building cpde_utils for linux
+This description applies to 64 bit Ubuntu/Kubuntu etc. 
+
+cpde is based on the Code::Blocks IDE and build system, so you need to install it
+    
+    $ sudo apt-get install codeblocks codeblocks-contrib
+    
+Every cpde project exports include files, libraries and binaries to a common area where other projects can find them. You should to set up this first. The name and location of the root folder (`~/cpde/usr` below) is user defined, but the subfolder names must be `include`,  `lib` and `bin` :
+
+    $ mkdir ~/cpde
+    $ cd ~/cpde
+    $ mkdir usr
+    $ mkdir usr/include
+    $ mkdir usr/lib
+    $ mkdir usr/bin
+
+Add a corresponding setting to your ~/.bashrc file so you can run the programs built easily
+
+    export PATH=$PATH:~/cpde/usr/bin/
+    export LD_LIBRARY_PATH=$PATH
+    
+Now enable Code::Blocks to be be aware of the common file area. Start Code::Blocks and make sure the 'Environment variables' plugin is installed and enabled, then add an environment variable via `Settings -> Environment ...` , scroll on the left and select 'Environment variables'. Enter a new variable called `CPDE_USR` and assign the value  `~/cpde/usr` (make it consistent with your definition above). 
+
+The basic setup is complete, but we need wxWidgets to compile some of the utilities, including the cpde_user application. CPDE requires wxWidgets built as static libraries. Begin with install the wxWidgets dependencies:
+
+    sudo apt-get install g++
+    sudo apt-get install zlibc
+    sudo apt-get install pkg-config
+    sudo apt-get install gtk2.0
+    sudo apt-get install freeglut3 freeglut3-dev
+    
+Clone cpde_utils from GitHub
+    
+    mkdir ~/cpde_git
+    cd ~/cpde_git
+    git clone https://github.com/arnholm/cpde_utils
+     
+Download wxWidgets 3.0.3 from http://wxwidgets.org/downloads/ 
+Extract to ~/cpde_git/3rdparty/wx/3.0.3  - it should now contain folders "art", "build" etc. 
+Then compile using the cpde_utils build script for wxWidgets, note the "buildgtk" subfolder:
+
+    $ mkdir  ~/cpde_git/3rdparty/wx/3.0.3/buildgtk
+    $ cd ~/cpde_git/3rdparty/wx/3.0.3/buildgtk
+    $ cp ~/cpde_git/cpde_utils/doc/wxWidgets/buildWxWidgets.sh .
+    $ chmod 700 ./buildWxWidgets.sh 
+    $ sudo ./buildWxWidgets.sh 
+
+Following a successful build, wxWidgets becomes installed to /usr/local . In Code::Blocks, define the 'wx' global variable via `Settings -> Global variables ...` . 
+
+Built-in field 
+* `base` : /usr/local
+
+In addition 2 user defined fields are required
+* `config` : `/usr/local/bin/wx-config --version=3.0 --toolkit=gtk2`  
+* `debug` : `dummy`
+    
+Close and restart Code::Blocks to save the settings. Then open the cpde_utils.workspace file and build the cpde_usr application. On successful build it will be copied to the `bin` folder you defined for cpde. You can test it in a terminal window by typing
+
+    $ cpde_usr
+
+It is recommended to supplement with a similar Code::Blocks global variable setting for boost
+
+    $ sudo apt-get install boost-all-dev
+    
+In Code::Blocks, define the 'boost' global variable via `Settings -> Global variables ...` . 
+
+Built-in fields 
+* `base` : /usr/include/boost 
+* `lib` : /usr/lib/x86_64-linux-gnu
+
+Basic setup is complete.
