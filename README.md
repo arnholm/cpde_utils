@@ -104,19 +104,19 @@ Add a corresponding setting to your ~/.bashrc file so you can run the programs b
     
 Now enable Code::Blocks to be be aware of the common file area. Start Code::Blocks and make sure the 'Environment variables' plugin is installed and enabled, then add an environment variable via `Settings -> Environment ...` , scroll on the left and select 'Environment variables'. Enter a new variable called `CPDE_USR` and assign the value  `~/cpde/usr` (make it consistent with your definition above). 
 
-The basic setup is complete, but we need wxWidgets to compile some of the utilities, including the cpde_user application. CPDE requires wxWidgets built as static libraries. Begin with install the wxWidgets dependencies:
+The basic setup is complete, but we need wxWidgets to compile some of the utilities, including the cpde_user application. CPDE requires wxWidgets built as static libraries. Begin with installing the wxWidgets dependencies:
 
-    sudo apt-get install g++
-    sudo apt-get install zlibc
-    sudo apt-get install pkg-config
-    sudo apt-get install gtk2.0
-    sudo apt-get install freeglut3 freeglut3-dev
+    $ sudo apt-get install g++
+    $ sudo apt-get install zlibc
+    $ sudo apt-get install pkg-config
+    $ sudo apt-get install gtk2.0
+    $ sudo apt-get install freeglut3 freeglut3-dev
     
 Clone cpde_utils from GitHub
     
-    mkdir ~/cpde_git
-    cd ~/cpde_git
-    git clone https://github.com/arnholm/cpde_utils
+    $ mkdir ~/cpde_git
+    $ cd ~/cpde_git
+    $ git clone https://github.com/arnholm/cpde_utils
      
 Download wxWidgets 3.0.3 from http://wxwidgets.org/downloads/ 
 Extract to ~/cpde_git/3rdparty/wx/3.0.3  - it should now contain folders "art", "build" etc. 
