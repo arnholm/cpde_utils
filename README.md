@@ -137,7 +137,7 @@ In addition 2 user defined fields are required
 * `config` : `/usr/local/bin/wx-config --version=3.0 --toolkit=gtk2`  
 * `debug` : `dummy`
     
-Close and restart Code::Blocks to save the settings. Then open the cpde_utils.workspace file and build the cpde_usr application. On successful build it will be copied to the `bin` folder you defined for cpde. You can test it in a terminal window by typing
+Close and restart Code::Blocks to save the settings. Then open the cpde_utils.workspace file and build the cpde_usr application (*Note:* make sure the GCC_Release build target is selected first). On successful build it will be copied to the `bin` folder you defined for cpde. You can test it in a terminal window by typing
 
     $ cpde_usr
 
