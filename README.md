@@ -1,5 +1,5 @@
 # cpde_utils
-Cross Platform Development Envoronment (CPDE) utility applications
+Cross Platform Development Environment (CPDE) utility applications
 
 CPDE is a C++ cross platform development environment based on the Code::Blocks IDE and build system. CPDE  depends on [wxWidgets](https://www.wxwidgets.org/) and [boost](http://www.boost.org/). CPDE supports Windows (MSVC compiler) and Linux. 
 
