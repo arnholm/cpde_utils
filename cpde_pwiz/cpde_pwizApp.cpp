@@ -34,7 +34,7 @@ bool cpde_pwizApp::OnInit()
 {
     //(*AppInitialize
     bool wxsOK = true;
-   //  wxInitAllImageHandlers();
+    wxInitAllImageHandlers();
     if ( wxsOK )
     {
     	cpde_pwizDialog Dlg(0);

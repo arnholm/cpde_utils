@@ -11,9 +11,11 @@
 		<Project filename="Bmp2Xpm/Bmp2Xpm.cbp">
 			<Depends filename="cpde_usr/cpde_usr.cbp" />
 		</Project>
+		<Project filename="as_class/as_class.cbp" />
 		<Project filename="cpde_pwiz/cpde_pwiz.cbp">
 			<Depends filename="wx-config/wx-config.cbp" />
 			<Depends filename="cpde_usr/cpde_usr.cbp" />
+			<Depends filename="as_class/as_class.cbp" />
 		</Project>
 		<Project filename="cpde_dummy_compiler/cpde_dummy_compiler.cbp" />
 		<Project filename="cpde_lic/cpde_lic.cbp" />
