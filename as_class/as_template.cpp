@@ -8,7 +8,10 @@ using namespace std;
 void as_template::InstallType(asIScriptEngine* engine)
 {
    // below declaration is called before installing this type
-   DeclareTypeEx("as_template",engine,"Fix this description in as_template.cpp");
+   DeclareType<as_template>(engine,"Fix this description in as_template.cpp");
+   
+   // Declare "inheritance"
+   // DeclareCast<as_template,base_class>(engine);
 
    // declate constructors
    as_template::DeclareConstructors(engine);
