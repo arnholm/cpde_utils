@@ -26,20 +26,19 @@ public:
    static void DeclareConstructors(asIScriptEngine* engine)
    {
       int r = 0;
-      r = DeclareConstructor(engine,"as_template","as_template@ as_template()",asFUNCTION(as_template::ctor_default)); as_assert( r >= 0 );
+     // r = DeclareConstructor(engine,as_typeid<as_template>(),"as_template@ as_template()",asFUNCTION(as_template::ctor_default)); as_assert( r >= 0 );
    }
 
    // Register scripting member functions, the template parameter signifies the scripting type
    template <class T>
    static void DeclareMethods(asIScriptEngine* engine)
    {
-      // inherit methods
-      as_reftype::DeclareMethods<as_reftype>(engine);
-      as_reftype::DeclareMethods<T>(engine);
+      // inherit methods: replace "base_class" with actual C++ base class
+      base_class::DeclareMethods<T>(engine);
 
       // local methods
       int r = 0;
-      // r = DeclareMethod(engine,type_name,"double x() const", asMETHOD(as_template,x)); as_assert( r >= 0 );
+      // r = DeclareMethod(engine,as_typeid<as_template>(),"double x() const", asMETHOD(as_template,x)); as_assert( r >= 0 );
 
    }
 
