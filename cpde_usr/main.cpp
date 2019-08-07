@@ -11,7 +11,7 @@
 // INCLUDING THE WARRANTIES OF DESIGN, MERCHANTABILITY AND FITNESS FOR
 // A PARTICULAR PURPOSE.
 // EndLicense:
-   
+
 
 #include <wx/defs.h>
 #include <wx/platinfo.h>  // platform info
@@ -25,6 +25,7 @@
 #include "cmdline_utils.h"
 #include "file_utils.h"
 #include <sstream>
+#include <iomanip>
 using namespace std;
 
 // Example Code::Blocks post-build step line
@@ -35,6 +36,7 @@ using namespace std;
 
 bool export_include(cmdline_params& params, size_t& ncopied, size_t& nremoved);
 bool export_target(cmdline_params& params, const wxString& target_file, size_t& ncopied);
+bool export_rename(const wxString& target_from, const wxString& target_to, size_t& ncopied);
 
 int main(int argc, char **argv)
 {
@@ -77,6 +79,21 @@ int main(int argc, char **argv)
 
    if(!params.xt) {
      export_target(params,params.target_file,ncopied_libs);
+
+
+     #if defined(__WXMSW__)
+        // special case when target is a ".pyd" file
+        // This is nothing but a Windows DLL file created for use by Python
+        // However, we might want it as a regular DLL as well, so we export a second copy with .dll extension
+        if(params.target_wxfn.GetExt() == "pyd") {
+           wxString target_file = params.target_wxfn.GetFullPath();
+           wxString export_dir  = params.usr + wxT("bin") + wxFileName::GetPathSeparator();
+           wxString export_file = params.target_wxfn.GetName() +  wxT(".dll");
+           wxString target_to   = export_dir+export_file;
+
+           export_rename(target_file,target_to,ncopied_libs);
+        }
+     #endif
 
      // special handling of DLL/shared object
      // we have to export the import library as well.
@@ -175,3 +192,27 @@ bool export_target(cmdline_params& params, const wxString& target_file, size_t& 
    return (ncopied == lib_files.size());
 }
 
+bool export_rename(const wxString& target_from, const wxString& target_to, size_t& ncopied)
+{
+   wxFileName fn_source(target_from);
+
+   bool copy_ok = wxCopyFile(target_from,target_to,true);
+   if(copy_ok) {
+
+      // copy also the date/time info
+      wxFileName fn_target(target_to);
+      wxDateTime dtAccess,dtMod,dtCreate;
+      if(fn_source.GetTimes(&dtAccess,&dtMod,&dtCreate)) {
+         fn_target.SetTimes(&dtAccess,&dtMod,&dtCreate);
+      }
+      ncopied++;
+   }
+   wxString txt = (copy_ok)? wxT("Copy_OK   "): wxT("***Copy_ERROR ");
+
+   ostringstream sout;
+   sout << " " << setw(2) << 1 << " of " <<  setw(2) << 1 << ": " << setw(50) << left << fn_source.GetFullName().ToStdString() << " ==> " << target_to << "  (renamed duplicate)";
+   txt += sout.str();
+
+   echo(txt);
+   return copy_ok;
+}
