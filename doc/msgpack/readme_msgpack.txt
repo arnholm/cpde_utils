@@ -25,10 +25,14 @@ $ git clone https://github.com/msgpack/msgpack-c.git
 4 Choose your Visual Studio version.
 5 Make sure static build is checked, may have to change and run 'Configure' again.
   Click 'Generate' button.
+  
+  If option MSGPACK_ENABLE_SHARED missing, add the line below in CMakeLists.txt (under OPTION (MSGPACK_BOOST "Using boost libraries" OFF)
+  OPTION (MSGPACK_ENABLE_SHARED "Build shared libaries in addition to static libraries." ON)
+  
 6 Open the created msgpack.sln on Visual Studio. 
 7 Select Release target and build all Build all.
 
-msgpack.lib found in E:\cpde2\zzdep\3rdparty\msgpack\x64\msgpack-c\Release
+msgpackc.lib found in E:\cpde2\zzdep\3rdparty\msgpack-c\x64\msgpack-c\x64\Release
 
 
 Linux
