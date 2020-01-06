@@ -19,5 +19,6 @@
 		</Project>
 		<Project filename="cpde_dummy_compiler/cpde_dummy_compiler.cbp" />
 		<Project filename="cpde_lic/cpde_lic.cbp" />
+		<Project filename="cb_config/cb_config.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

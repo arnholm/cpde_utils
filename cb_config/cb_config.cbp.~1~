@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="cb_config" />
+		<Option pch_mode="2" />
+		<Option compiler="msvc" />
+		<Build>
+			<Target title="MSVC_Debug">
+				<Option output=".cmp\msvc\bin\Debug\cb_configd" prefix_auto="1" extension_auto="1" />
+				<Option object_output=".cmp\msvc\obj\Debug\" />
+				<Option type="0" />
+				<Option compiler="msvc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="/MDd" />
+					<Add option="/TP" />
+					<Add option="/Gd" />
+					<Add option="/RTC1" />
+					<Add option="/Gm" />
+					<Add option="/EHs" />
+					<Add option="/GR" />
+					<Add option="/GS" />
+					<Add option="/GF" />
+					<Add option="/Od" />
+					<Add option="/W3" />
+					<Add option="/Zi" />
+					<Add option="/Zi /D_DEBUG" />
+					<Add option="/EHsc" />
+					<Add option='/Fd&quot;$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).pdb&quot;' />
+					<Add option="/FD" />
+					<Add option="/RTCsu" />
+					<Add option="/Zc:wchar_t-" />
+					<Add option="/D_CRT_SECURE_NO_WARNINGS" />
+					<Add option="/DWIN32" />
+					<Add option="/D__WIN32__" />
+					<Add option="/D_WXMSW_" />
+					<Add option="/D_WINDOWS" />
+					<Add option="/D__WXDEBUG__" />
+					<Add option="/D__WXMSW__" />
+					<Add option="/D_CRT_SECURE_DEPRECATE" />
+					<Add option="/D_CRT_NONSTDC_NO_DEPRECATE" />
+					<Add directory="$(#wx.include)" />
+					<Add directory="$(#wx)\lib\vc_lib\mswud" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="$(#wx)\include" />
+					<Add directory="$(#wx)\lib\vc_lib\mswud" />
+				</ResourceCompiler>
+				<Linker>
+					<Add option="/DEBUG" />
+					<Add option="/NODEFAULTLIB:libcmt.lib" />
+					<Add option="/NODEFAULTLIB:msvcrt.lib" />
+					<Add option="/INCREMENTAL:NO" />
+					<Add option="/SUBSYSTEM:WINDOWS" />
+					<Add library="msvcrtd.lib" />
+					<Add library="wxmsw28d_richtext.lib" />
+					<Add library="wxmsw28d_xrc.lib" />
+					<Add library="wxmsw28d_aui.lib" />
+					<Add library="wxmsw28d_media.lib" />
+					<Add library="wxbase28d_net.lib" />
+					<Add library="wxmsw28d_qa.lib" />
+					<Add library="wxbase28d_xml.lib" />
+					<Add library="wxmsw28d_adv.lib" />
+					<Add library="wxmsw28d_html.lib" />
+					<Add library="wxmsw28d_core.lib" />
+					<Add library="wxbase28d.lib" />
+					<Add library="wxpngd.lib" />
+					<Add library="wxjpegd.lib" />
+					<Add library="wxtiffd.lib" />
+					<Add library="wxzlibd.lib" />
+					<Add library="wxregexd.lib" />
+					<Add library="wxexpatd.lib" />
+					<Add library="gdiplus.lib" />
+					<Add library="winmm.lib" />
+					<Add library="rpcrt4.lib" />
+					<Add library="kernel32.lib" />
+					<Add library="user32.lib" />
+					<Add library="gdi32.lib" />
+					<Add library="winspool.lib" />
+					<Add library="comdlg32.lib" />
+					<Add library="advapi32.lib" />
+					<Add library="shell32.lib" />
+					<Add library="ole32.lib" />
+					<Add library="oleaut32.lib" />
+					<Add library="uuid.lib" />
+					<Add library="comctl32.lib" />
+					<Add library="wsock32.lib" />
+					<Add library="odbc32.lib" />
+					<Add directory="$(#wx)\lib\vc_lib" />
+				</Linker>
+			</Target>
+			<Target title="MSVC_Release">
+				<Option output=".cmp\msvc\bin\Release\cb_config" prefix_auto="1" extension_auto="1" />
+				<Option object_output=".cmp\msvc\obj\Release\" />
+				<Option type="0" />
+				<Option compiler="msvc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="/MD" />
+					<Add option="/TP" />
+					<Add option="/Gd" />
+					<Add option="/EHs" />
+					<Add option="/GR" />
+					<Add option="/GF" />
+					<Add option="/O2" />
+					<Add option="/Ox" />
+					<Add option="/W3" />
+					<Add option="/Ob1" />
+					<Add option='/Fd&quot;$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).pdb&quot;' />
+					<Add option="/Zc:wchar_t-" />
+					<Add option="/EHsc" />
+					<Add option="/D_CRT_SECURE_NO_WARNINGS" />
+					<Add option="/DNDEBUG" />
+					<Add option="/DWIN32" />
+					<Add option="/D__WIN32__" />
+					<Add option="/D_WXMSW_" />
+					<Add option="/D_WINDOWS" />
+					<Add option="/D__WXMSW__" />
+					<Add option="/D_CRT_SECURE_DEPRECATE" />
+					<Add option="/D_CRT_NONSTDC_NO_DEPRECATE" />
+					<Add directory="$(#wx.include)" />
+					<Add directory="$(#wx)\lib\vc_lib\mswud" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="$(#wx)\include" />
+					<Add directory="$(#wx)\lib\vc_lib\mswu" />
+				</ResourceCompiler>
+				<Linker>
+					<Add option="/NODEFAULTLIB:libcmtd.lib" />
+					<Add option="/NODEFAULTLIB:msvcrtd.lib" />
+					<Add option="/INCREMENTAL:NO" />
+					<Add option="/SUBSYSTEM:WINDOWS" />
+					<Add library="msvcrt.lib" />
+					<Add library="wxmsw28_richtext.lib" />
+					<Add library="wxmsw28_xrc.lib" />
+					<Add library="wxmsw28_aui.lib" />
+					<Add library="wxmsw28_media.lib" />
+					<Add library="wxbase28_net.lib" />
+					<Add library="wxmsw28_qa.lib" />
+					<Add library="wxbase28_xml.lib" />
+					<Add library="wxmsw28_adv.lib" />
+					<Add library="wxmsw28_html.lib" />
+					<Add library="wxmsw28_core.lib" />
+					<Add library="wxbase28.lib" />
+					<Add library="wxpng.lib" />
+					<Add library="wxjpeg.lib" />
+					<Add library="wxtiff.lib" />
+					<Add library="wxzlib.lib" />
+					<Add library="wxregex.lib" />
+					<Add library="wxexpat.lib" />
+					<Add library="gdiplus.lib" />
+					<Add library="winmm.lib" />
+					<Add library="rpcrt4.lib" />
+					<Add library="kernel32.lib" />
+					<Add library="user32.lib" />
+					<Add library="gdi32.lib" />
+					<Add library="winspool.lib" />
+					<Add library="comdlg32.lib" />
+					<Add library="advapi32.lib" />
+					<Add library="shell32.lib" />
+					<Add library="ole32.lib" />
+					<Add library="oleaut32.lib" />
+					<Add library="uuid.lib" />
+					<Add library="comctl32.lib" />
+					<Add library="wsock32.lib" />
+					<Add library="odbc32.lib" />
+					<Add directory="$(#wx)\lib\vc_lib" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="$(CPDE_USR)\bin\cpde_usr -bin -xi -project=$(PROJECT_NAME)  -root=$(PROJECT_DIR)  -build=$(TARGET_NAME)  -target=$(TARGET_OUTPUT_FILE)  -usr=$(CPDE_USR)" />
+				</ExtraCommands>
+			</Target>
+			<Target title="GCC_Debug">
+				<Option output=".cmp\gcc\libcb_configd" prefix_auto="1" extension_auto="1" />
+				<Option object_output=".cmp\gcc\obj\Debug\" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-g" />
+					<Add option="-std=c++0x" />
+					<Add option="`/usr/local/bin/wx-config --version=2.8 --toolkit=gtk2 --debug --cxxflags`" />
+					<Add option="-DNOPCH" />
+					<Add option="-D__WXDEBUG__" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D__WX__" />
+				</Compiler>
+				<Linker>
+					<Add option="`/usr/local/bin/wx-config  --version=2.8 --toolkit=gtk2 --debug --libs`" />
+				</Linker>
+			</Target>
+			<Target title="GCC_Release">
+				<Option output=".cmp\gcc\libcb_config" prefix_auto="1" extension_auto="1" />
+				<Option object_output=".cmp\gcc\obj\Release\" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-Os" />
+					<Add option="-O2" />
+					<Add option="-std=c++0x" />
+					<Add option="-Wall" />
+					<Add option="`/usr/local/bin/wx-config --version=2.8 --toolkit=gtk2 --cxxflags`" />
+					<Add option="-DNOPCH" />
+					<Add option="-D__WX__" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="`/usr/local/bin/wx-config  --version=2.8 --toolkit=gtk2 --static=yes --libs`" />
+				</Linker>
+				<ExtraCommands>
+					<Add before="rm -f $(TARGET_OUTPUT_FILE)" />
+					<Add after="upx $(TARGET_OUTPUT_FILE)" />
+					<Add after="$(CPDE_USR)/bin/cpde_usr -bin -xi -project=$(PROJECT_NAME)  -root=$(PROJECT_DIR)  -build=$(TARGET_NAME)  -target=$(TARGET_OUTPUT_FILE)  -usr=$(CPDE_USR)" />
+					<Mode after="always" />
+				</ExtraCommands>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add directory="$(CPDE_USR)\include" />
+		</Compiler>
+		<Linker>
+			<Add directory="$(CPDE_USR)\lib" />
+		</Linker>
+		<Unit filename="cb_configApp.cpp" />
+		<Unit filename="cb_configApp.h" />
+		<Unit filename="cb_configMain.cpp" />
+		<Unit filename="cb_configMain.h" />
+		<Unit filename="resource.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="wxsmith\cb_configframe.wxs" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<wxsmith version="1">
+				<gui name="wxWidgets" src="cb_configApp.cpp" main="cb_configFrame" init_handlers="necessary" language="CPP" />
+				<resources>
+					<wxFrame wxs="wxsmith/cb_configframe.wxs" src="cb_configMain.cpp" hdr="cb_configMain.h" fwddecl="0" i18n="1" name="cb_configFrame" language="CPP" />
+				</resources>
+			</wxsmith>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
