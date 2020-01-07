@@ -45,6 +45,7 @@ wxString wxbuildinfo(wxbuildinfoformat format)
 //(*IdInit(cb_configFrame)
 const long cb_configFrame::ID_PANEL1 = wxNewId();
 const long cb_configFrame::ID_NOTEBOOK1 = wxNewId();
+const long cb_configFrame::ID_MENUITEM1 = wxNewId();
 const long cb_configFrame::idMenuQuit = wxNewId();
 const long cb_configFrame::idMenuAbout = wxNewId();
 const long cb_configFrame::ID_STATUSBAR1 = wxNewId();
@@ -74,6 +75,8 @@ cb_configFrame::cb_configFrame(wxWindow* parent,wxWindowID id)
     AuiManager1->Update();
     MenuBar1 = new wxMenuBar();
     Menu1 = new wxMenu();
+    MenuItem3 = new wxMenuItem(Menu1, ID_MENUITEM1, _("Save config"), wxEmptyString, wxITEM_NORMAL);
+    Menu1->Append(MenuItem3);
     MenuItem1 = new wxMenuItem(Menu1, idMenuQuit, _("Quit\tAlt-F4"), _("Quit the application"), wxITEM_NORMAL);
     Menu1->Append(MenuItem1);
     MenuBar1->Append(Menu1, _("&File"));
@@ -89,11 +92,15 @@ cb_configFrame::cb_configFrame(wxWindow* parent,wxWindowID id)
     StatusBar1->SetStatusStyles(1,__wxStatusBarStyles_1);
     SetStatusBar(StatusBar1);
 
+    Connect(ID_MENUITEM1,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&cb_configFrame::OnFileSaveConfig);
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&cb_configFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&cb_configFrame::OnAbout);
     //*)
 
-    ReadConfig(GetConfigPath());
+    wxFileName configpath = GetConfigPath();
+    ReadConfig(configpath);
+
+    SetTitle("cb_config - " + configpath.GetFullPath());
 }
 
 cb_configFrame::~cb_configFrame()
@@ -137,4 +144,27 @@ void cb_configFrame::ReadConfig(const wxFileName& fname)
 
 void cb_configFrame::WriteConfig(const wxFileName& fname)
 {
+   wxString timestamp = wxDateTime::Now().FormatISOCombined();
+   timestamp.Replace(":","");
+   timestamp.Replace("-","");
+   timestamp.Replace("T","_");
+
+
+   // before writing the config, always create a backup of the old one
+   wxFileName backup_fname(fname);
+   backup_fname.SetName(fname.GetName()+'_'+timestamp);
+   backup_fname.AppendDir("cb_config");
+
+   if(!wxDirExists(backup_fname.GetPath())) wxMkDir(backup_fname.GetPath());
+   wxCopyFile(fname.GetFullPath(),backup_fname.GetFullPath());
+   wxMessageBox(backup_fname.GetFullPath(), _("Code::Blocks config backup file created"));
+
+   m_cb_config.write_xml(fname.GetFullPath().ToStdString());
+   wxMessageBox(fname.GetFullPath(), _("Code::Blocks config file saved"));
+}
+
+void cb_configFrame::OnFileSaveConfig(wxCommandEvent& event)
+{
+    wxFileName configpath = GetConfigPath();
+    WriteConfig(configpath);
 }

@@ -45,6 +45,25 @@ xml_node& xml_node::operator=(const xml_node& other_node )
    return *this;
 }
 
+void xml_node::deep_copy(xml_node& source, const string& tag)
+{
+   string tag_copy = (tag.length() > 0)? tag : m_tag;
+   m_tag = tag;
+
+   // clear any contents of this node
+   m_ptree_node.get().clear();
+
+   // clone the contents from the source node
+   if(source.has_value()) {
+      put_value(source.get_value(""));
+   }
+   for(auto i=source.begin(); i!=source.end(); i++) {
+      xml_node source_child(i);
+      xml_node target_child = add_child(source_child.tag());
+      target_child.deep_copy(source_child);
+   }
+}
+
 xml_node::~xml_node()
 {}
 

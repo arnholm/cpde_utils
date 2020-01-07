@@ -216,6 +216,7 @@ void  SelectPanel::FillCompilers(xml_node& root)
 }
 
 
+// apply new compiler
 void SelectPanel::OnCompilerApplyClick(wxCommandEvent& event)
 {
    xml_node root;
@@ -224,7 +225,7 @@ void SelectPanel::OnCompilerApplyClick(wxCommandEvent& event)
          xml_node compiler;
          if(root.get_child("compiler",compiler)) {
             std::string source_name = m_compilers->GetStringSelection().MakeLower().ToStdString();
-            std::string target_name = m_compiler_target->GetStringSelection().MakeLower().ToStdString();
+            std::string target_name = m_compiler_target->GetValue().MakeLower().ToStdString();
             if(target_name != source_name) {
                xml_node user_sets;
                if(compiler.get_child("user_sets",user_sets)) {
@@ -237,6 +238,15 @@ void SelectPanel::OnCompilerApplyClick(wxCommandEvent& event)
                      target = user_sets.add_child(target_name);
                   }
                   CopyCompiler(compiler,target,target_name,source);
+
+                  // make the new copy the default compiler
+                  xml_node default_compiler;
+                  if(compiler.get_child("DEFAULT_COMPILER",default_compiler)) {
+                     xml_node str;
+                     if(default_compiler.get_child("str",str)) {
+                        str.put_value(target_name);
+                     }
+                  }
                }
             }
          }
@@ -251,7 +261,7 @@ void SelectPanel::CopyCompiler(xml_node& compiler, xml_node& target, const strin
 {
    xml_node default_compiler;
    if(compiler.get_child("DEFAULT_COMPILER",default_compiler)) {
-      target = xml_node(target_name,source);
+      target.deep_copy(source,target_name);
 
       xml_node name;
       if(target.get_child("NAME",name)) {
@@ -271,5 +281,4 @@ void SelectPanel::CopyCompiler(xml_node& compiler, xml_node& target, const strin
          }
       }
    }
-
 }

@@ -42,10 +42,10 @@
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="/MD" />
-					<Add option="/Ox" />
 					<Add option="/GF" />
-					<Add option="/EHsc" />
+					<Add option="/Ox" />
 					<Add option="/W3" />
+					<Add option="/EHsc" />
 					<Add option="`$(CPDE_USR)\bin\wx-config.exe --prefix=$(#wx) --wxcfg=$(#wx.release) --cxxflags`" />
 					<Add option="/D_CRT_SECURE_NO_WARNINGS" />
 					<Add option="/D_CRT_NONSTDC_NO_DEPRECATE" />
@@ -60,7 +60,9 @@
 					<Add library="msvcrt.lib" />
 				</Linker>
 				<ExtraCommands>
+					<Add after="mt.exe /nologo /manifest $(TARGET_OUTPUT_FILE).manifest /outputresource:$(TARGET_OUTPUT_FILE);1" />
 					<Add after="$(CPDE_USR)\bin\cpde_usr -bin -xi -project=$(PROJECT_NAME)  -root=$(PROJECT_DIR)  -build=$(TARGET_NAME)  -target=$(TARGET_OUTPUT_FILE)  -usr=$(CPDE_USR)" />
+					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
 			<Target title="GCC_Debug">

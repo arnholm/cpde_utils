@@ -100,6 +100,9 @@ public:
    // returns a valid iterator pointing to the element after the erased.
    iterator erase(iterator it_child);
 
+   // copy from source to this
+   void deep_copy(xml_node& source, const string& tag="");
+
 private:
    xml_node(const string& tag, ptree& m_ptree_node);
 

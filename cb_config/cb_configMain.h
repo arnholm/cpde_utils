@@ -40,11 +40,13 @@ private:
   //(*Handlers(cb_configFrame)
   void OnQuit(wxCommandEvent& event);
   void OnAbout(wxCommandEvent& event);
+  void OnFileSaveConfig(wxCommandEvent& event);
   //*)
 
   //(*Identifiers(cb_configFrame)
   static const long ID_PANEL1;
   static const long ID_NOTEBOOK1;
+  static const long ID_MENUITEM1;
   static const long idMenuQuit;
   static const long idMenuAbout;
   static const long ID_STATUSBAR1;
@@ -53,6 +55,7 @@ private:
   //(*Declarations(cb_configFrame)
   SelectPanel* m_select;
   wxAuiManager* AuiManager1;
+  wxMenuItem* MenuItem3;
   wxNotebook* Notebook1;
   wxStatusBar* StatusBar1;
   //*)
