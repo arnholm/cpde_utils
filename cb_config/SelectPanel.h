@@ -21,6 +21,8 @@ public:
 
    void set_config(xml_tree* cb_config);
 
+   xml_tree* get_config() { return m_cb_config; }
+
    //(*Declarations(SelectPanel)
    wxButton* m_compiler_apply;
    wxButton* m_globals_apply;

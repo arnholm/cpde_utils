@@ -11,6 +11,8 @@
 #include <wx/msgdlg.h>
 #include <wx/stdpaths.h>
 
+#include "wxProcessList.h"
+
 //(*InternalHeaders(cb_configFrame)
 #include <wx/intl.h>
 #include <wx/string.h>
@@ -97,10 +99,22 @@ cb_configFrame::cb_configFrame(wxWindow* parent,wxWindowID id)
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&cb_configFrame::OnAbout);
     //*)
 
-    wxFileName configpath = GetConfigPath();
-    ReadConfig(configpath);
 
-    SetTitle("cb_config - " + configpath.GetFullPath());
+    // check if Code::Blocks is running
+    std::vector<wxProcessEntry> proc = wxProcessList::Get("codeblocks");
+    if(proc.size() == 0) {
+
+       // ok, Code::Blocks is not running
+       wxFileName configpath = GetConfigPath();
+       SetTitle("cb_config - " + configpath.GetFullPath());
+
+       ReadConfig(configpath);
+    }
+    else {
+       wxMessageBox("Please shut down all instances of Code::Blocks before using cb_config", "Code::Blocks is running");
+
+       SetTitle("cb_config - Please close Code::Blocks and restart cb_config");
+    }
 }
 
 cb_configFrame::~cb_configFrame()
@@ -165,6 +179,8 @@ void cb_configFrame::WriteConfig(const wxFileName& fname)
 
 void cb_configFrame::OnFileSaveConfig(wxCommandEvent& event)
 {
-    wxFileName configpath = GetConfigPath();
-    WriteConfig(configpath);
+   if(m_select->get_config()) {
+      wxFileName configpath = GetConfigPath();
+      WriteConfig(configpath);
+   }
 }
