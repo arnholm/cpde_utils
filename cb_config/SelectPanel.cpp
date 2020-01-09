@@ -1,5 +1,6 @@
 #include "SelectPanel.h"
 #include <map>
+#include <algorithm>
 using namespace std;
 
 //(*InternalHeaders(SelectPanel)
@@ -78,44 +79,41 @@ SelectPanel::~SelectPanel()
 	//*)
 }
 
-void SelectPanel::set_config(xml_tree* cb_config)
+void SelectPanel::set_config(wxml_tree* cb_config)
 {
    m_cb_config = cb_config;
 
    // display configuration
-   xml_node root;
-   if(m_cb_config->get_root(root)) {
-      if(root.tag() == "CodeBlocksConfig") {
-         FillGlobals(root);
-         FillCompilers(root);
-      }
+   wxml_node root = m_cb_config->get_root();
+   if(root.tag() == "CodeBlocksConfig") {
+      FillGlobals(root);
+      FillCompilers(root);
    }
 
 }
 
 
-void  SelectPanel::FillGlobals(xml_node& root)
+void  SelectPanel::FillGlobals(wxml_node& root)
 {
    // display global variable sets
    m_globals->Clear();
    m_global_text->SetLabel("");
 
-   xml_node gcv;
+   wxml_node gcv;
    if(root.get_child("gcv",gcv)) {
 
       // set names
-      xml_node sets;
+      wxml_node sets;
       if(gcv.get_child("sets",sets)) {
-         for(auto i=sets.begin(); i!=sets.end(); i++) {
-            xml_node gcv_set(i);
+         for(auto& gcv_set : sets.get_children()) {
             m_globals->Append(gcv_set.tag());
          }
       }
 
       // active set
-      xml_node active;
+      wxml_node active;
       if(gcv.get_child("ACTIVE",active)) {
-         xml_node str;
+         wxml_node str;
          if(active.get_child("str",str)) {
             std::string active_set = str.get_value("");
             m_global_text->SetLabel(active_set);
@@ -128,32 +126,29 @@ void  SelectPanel::FillGlobals(xml_node& root)
 // apply new global variables set
 void SelectPanel::OnGlobalApplyClick(wxCommandEvent& event)
 {
-   xml_node root;
-   if(m_cb_config->get_root(root)) {
-      if(root.tag() == "CodeBlocksConfig") {
+   wxml_node root = m_cb_config->get_root();
+   if(root.tag() == "CodeBlocksConfig") {
 
-         xml_node gcv;
-         if(root.get_child("gcv",gcv)) {
+      wxml_node gcv;
+      if(root.get_child("gcv",gcv)) {
 
-            // get selection in list
-            std::string active_set = m_globals->GetStringSelection().MakeLower().ToStdString();
+         // get selection in list
+         std::string active_set = m_globals->GetStringSelection().MakeLower().ToStdString();
 
-            // apply selection in "ACTIVE" tag
-            xml_node active;
-            if(gcv.get_child("ACTIVE",active)) {
-               xml_node str;
-               if(active.get_child("str",str)) {
-                  str.put_value(active_set);
-               }
+         // apply selection in "ACTIVE" tag
+         wxml_node active;
+         if(gcv.get_child("ACTIVE",active)) {
+            wxml_node str;
+            if(active.get_child("str",str)) {
+               str.set_content(active_set);
             }
          }
       }
-
-      FillGlobals(root);
    }
+   FillGlobals(root);
 }
 
-void  SelectPanel::FillCompilers(xml_node& root)
+void  SelectPanel::FillCompilers(wxml_node& root)
 {
    // display active compiler
 
@@ -161,32 +156,31 @@ void  SelectPanel::FillCompilers(xml_node& root)
    m_compiler_text->SetLabel("");
    m_compiler_parent->SetLabel("");
 
-   xml_node compiler;
+   wxml_node compiler;
    if(root.get_child("compiler",compiler)) {
 
       // mapping between compiler and "parent" compiler
       map<string,string> parent_compilers;
 
       // show user defined compilers
-      xml_node user_sets;
+      wxml_node user_sets;
       if(compiler.get_child("user_sets",user_sets)) {
-         for(auto i=user_sets.begin(); i!=user_sets.end(); i++) {
-            xml_node user_compiler(i);
+         for(auto& user_compiler : user_sets.get_children()) {
 
             // get compiler name (uppercase)
-            xml_node name;
+            wxml_node name;
             string compiler_name;
             if(user_compiler.get_child("NAME",name)) {
-               xml_node str;
+               wxml_node str;
                if(name.get_child("str",str)) {
                   compiler_name = str.get_value("");
                   m_compilers->Append(compiler_name);
                }
             }
 
-            xml_node parent;
+            wxml_node parent;
             if(user_compiler.get_child("PARENT",parent)) {
-               xml_node str;
+               wxml_node str;
                if(parent.get_child("str",str)) {
                   std::string parent_comp = str.get_value("");
                   std::transform(compiler_name.begin(),compiler_name.end(),compiler_name.begin(),::tolower);
@@ -200,9 +194,9 @@ void  SelectPanel::FillCompilers(xml_node& root)
 
       // get the default (=active) compiler and display it with its parent compiler
       // also highlight in list
-      xml_node default_compiler;
+      wxml_node default_compiler;
       if(compiler.get_child("DEFAULT_COMPILER",default_compiler)) {
-         xml_node str;
+         wxml_node str;
          if(default_compiler.get_child("str",str)) {
             std::string active_comp = str.get_value("");
             m_compiler_parent->SetLabel('('+parent_compilers[active_comp]+')');
@@ -219,65 +213,62 @@ void  SelectPanel::FillCompilers(xml_node& root)
 // apply new compiler
 void SelectPanel::OnCompilerApplyClick(wxCommandEvent& event)
 {
-   xml_node root;
-   if(m_cb_config->get_root(root)) {
-      if(root.tag() == "CodeBlocksConfig") {
-         xml_node compiler;
-         if(root.get_child("compiler",compiler)) {
-            std::string source_name = m_compilers->GetStringSelection().MakeLower().ToStdString();
-            std::string target_name = m_compiler_target->GetValue().MakeLower().ToStdString();
-            if(target_name != source_name) {
-               xml_node user_sets;
-               if(compiler.get_child("user_sets",user_sets)) {
-                  xml_node source;
-                  xml_node target;
-                  user_sets.get_child(source_name,source);
+   wxml_node root = m_cb_config->get_root();
+   if(root.tag() == "CodeBlocksConfig") {
+      wxml_node compiler;
+      if(root.get_child("compiler",compiler)) {
+         std::string source_name = m_compilers->GetStringSelection().MakeLower().ToStdString();
+         std::string target_name = m_compiler_target->GetValue().MakeLower().ToStdString();
+         if(target_name != source_name) {
+            wxml_node user_sets;
+            if(compiler.get_child("user_sets",user_sets)) {
+               wxml_node source;
+               wxml_node target;
+               user_sets.get_child(source_name,source);
 
-                  // copy the compiler node to the target node
-                  if(!user_sets.get_child(target_name,target)) {
-                     target = user_sets.add_child(target_name);
-                  }
-                  CopyCompiler(compiler,target,target_name,source);
+               // copy the compiler node to the target node
+               if(!user_sets.get_child(target_name,target)) {
+                  target = user_sets.add_child(target_name);
+               }
+               CopyCompiler(compiler,target,target_name,source);
 
-                  // make the new copy the default compiler
-                  xml_node default_compiler;
-                  if(compiler.get_child("DEFAULT_COMPILER",default_compiler)) {
-                     xml_node str;
-                     if(default_compiler.get_child("str",str)) {
-                        str.put_value(target_name);
-                     }
+               // make the new copy the default compiler
+               wxml_node default_compiler;
+               if(compiler.get_child("DEFAULT_COMPILER",default_compiler)) {
+                  wxml_node str;
+                  if(default_compiler.get_child("str",str)) {
+                     str.set_content(target_name);
                   }
                }
             }
          }
       }
-
-      FillCompilers(root);
    }
+
+   FillCompilers(root);
 }
 
-
-void SelectPanel::CopyCompiler(xml_node& compiler, xml_node& target, const string& target_name, xml_node& source)
+void SelectPanel::CopyCompiler(wxml_node& compiler, wxml_node& target, const std::string& target_name, wxml_node& source)
 {
-   xml_node default_compiler;
+   wxml_node default_compiler;
    if(compiler.get_child("DEFAULT_COMPILER",default_compiler)) {
       target.deep_copy(source,target_name);
 
-      xml_node name;
+      wxml_node name;
       if(target.get_child("NAME",name)) {
          string target_name_upper = target_name;
          std::transform(target_name.begin(),target_name.end(),target_name_upper.begin(),::toupper);
-         xml_node str;
+         wxml_node str;
          if(name.get_child("str",str)) {
-            str.put_value(target_name_upper);
+            str.set_content(target_name_upper);
          }
       }
 
-      xml_node parent;
+      wxml_node parent;
       if(target.get_child("PARENT",parent)) {
-         xml_node str;
+         wxml_node str;
          if(parent.get_child("str",str)) {
-            str.put_value(source.tag());
+            str.set_content(source.tag());
          }
       }
    }

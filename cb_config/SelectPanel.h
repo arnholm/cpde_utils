@@ -10,7 +10,8 @@
 #include <wx/stattext.h>
 //*)
 
-#include "xml_tree.h"
+#include "wxml_tree.h"
+#include "wxml_node.h"
 
 class SelectPanel: public wxPanel
 {
@@ -19,9 +20,9 @@ public:
    SelectPanel(wxWindow* parent,wxWindowID id=wxID_ANY,const wxPoint& pos=wxDefaultPosition,const wxSize& size=wxDefaultSize, int opt=0, const wxString& name="SelectPanel");
    virtual ~SelectPanel();
 
-   void set_config(xml_tree* cb_config);
+   void set_config(wxml_tree* cb_config);
 
-   xml_tree* get_config() { return m_cb_config; }
+   wxml_tree* get_config() { return m_cb_config; }
 
    //(*Declarations(SelectPanel)
    wxButton* m_compiler_apply;
@@ -35,10 +36,10 @@ public:
    //*)
 
 protected:
-   void CopyCompiler(xml_node& compiler, xml_node& target, const string& target_name, xml_node& source);
+   void CopyCompiler(wxml_node& compiler, wxml_node& target, const std::string& target_name, wxml_node& source);
 
-   void FillGlobals(xml_node& root);
-   void FillCompilers(xml_node& root);
+   void FillGlobals(wxml_node& root);
+   void FillCompilers(wxml_node& root);
 
    //(*Identifiers(SelectPanel)
    static const long ID_STATICTEXT1;
@@ -60,7 +61,7 @@ private:
 
    DECLARE_EVENT_TABLE()
 private:
-   xml_tree* m_cb_config;
+   wxml_tree* m_cb_config;
 };
 
 #endif

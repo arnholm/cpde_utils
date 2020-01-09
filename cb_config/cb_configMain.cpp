@@ -152,7 +152,7 @@ void cb_configFrame::ReadConfig(const wxFileName& fname)
       return;
    }
 
-   m_cb_config.read_xml(fname.GetFullPath().ToStdString());
+   m_cb_config.read_xml(fname.GetFullPath());
    m_select->set_config(&m_cb_config);
 }
 
@@ -173,7 +173,7 @@ void cb_configFrame::WriteConfig(const wxFileName& fname)
    wxCopyFile(fname.GetFullPath(),backup_fname.GetFullPath());
    wxMessageBox(backup_fname.GetFullPath(), _("Code::Blocks config backup file created"));
 
-   m_cb_config.write_xml(fname.GetFullPath().ToStdString());
+   m_cb_config.write_xml(fname.GetFullPath());
    wxMessageBox(fname.GetFullPath(), _("Code::Blocks config file saved"));
 }
 

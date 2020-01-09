@@ -63,7 +63,7 @@ private:
   DECLARE_EVENT_TABLE()
 
 private:
-  xml_tree m_cb_config;  // Code::Blocks 'default.conf'
+  wxml_tree m_cb_config;  // Code::Blocks 'default.conf'
 };
 
 #endif // CB_CONFIGMAIN_H

@@ -25,6 +25,7 @@
 					<Add option="/D_CRT_NONSTDC_NO_DEPRECATE" />
 					<Add option="/D_CRT_SECURE_DEPRECATE" />
 					<Add directory="./" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="`$(CPDE_USR)\bin\wx-config.exe  --prefix=$(#wx) --wxcfg=$(#wx.debug) --libs`" />
@@ -52,6 +53,7 @@
 					<Add option="/D_CRT_NONSTDC_NO_DEPRECATE" />
 					<Add option="/D_CRT_SECURE_DEPRECATE" />
 					<Add directory="./" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="`$(CPDE_USR)\bin\wx-config.exe  --prefix=$(#wx) --wxcfg=$(#wx.release) --libs`" />
@@ -83,6 +85,7 @@
 					<Add option="-g" />
 					<Add option="`$(#wx.config) --cxxflags --debug`" />
 					<Add directory="./" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="`$(#wx.config) --libs std,aui --static --debug`" />
@@ -103,6 +106,7 @@
 					<Add option="-Os" />
 					<Add option="`$(#wx.config) --cxxflags`" />
 					<Add directory="./" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="`$(#wx.config) --libs std,aui --static`" />
@@ -137,12 +141,12 @@
 		</Unit>
 		<Unit filename="wxProcessList.cpp" />
 		<Unit filename="wxProcessList.h" />
+		<Unit filename="wxml_node.cpp" />
+		<Unit filename="wxml_node.h" />
+		<Unit filename="wxml_tree.cpp" />
+		<Unit filename="wxml_tree.h" />
 		<Unit filename="wxsmith/SelectPanel.wxs" />
 		<Unit filename="wxsmith/cb_configframe.wxs" />
-		<Unit filename="xml_node.cpp" />
-		<Unit filename="xml_node.h" />
-		<Unit filename="xml_tree.cpp" />
-		<Unit filename="xml_tree.h" />
 		<Extensions>
 			<wxsmith version="1">
 				<gui name="wxWidgets" src="cb_configApp.cpp" main="cb_configFrame" init_handlers="necessary" language="CPP" />
