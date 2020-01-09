@@ -100,8 +100,9 @@ void wxml_node::set_content(const wxString& txt)
 {
    if(!m_node)return;
    wxXmlNode* c = m_node->GetChildren();
-
-   c->SetContent(txt);
+   if(c && c->GetType() == wxXML_CDATA_SECTION_NODE) {
+      c->SetContent(txt);
+   }
 }
 
 void wxml_node::deep_copy(wxml_node& source,const wxString& target_name)
@@ -118,10 +119,15 @@ void wxml_node::deep_copy(wxml_node& source,const wxString& target_name)
 
       wxString value = source_child.get_value("");
       if(value.length() > 0) {
+
+         // store the value as CDATA grand-child
+         // we assume leaf node here, so no more deep copy
          wxml_node target_child = add_child(source_child.tag());
          wxml_node target_child_cdata = target_child.add_child_cdata("cdata",value);
       }
       else {
+
+         // ordinary element
          wxml_node target_child = add_child(source_child.tag());
          target_child.deep_copy(source_child);
       }

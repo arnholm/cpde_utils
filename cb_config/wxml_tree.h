@@ -5,6 +5,9 @@
 #include <wx/xml/xml.h>
 #include "wxml_node.h"
 
+// minimal emulation of cf_utils xml classes, but using wxWidgets XML implementation
+// because boost property tree does not support CDATA
+
 class wxml_tree {
 public:
    wxml_tree();
@@ -14,8 +17,6 @@ public:
    bool write_xml(const wxFileName& file);
 
    wxml_node get_root();
-
-protected:
 
 private:
    wxXmlDocument m_doc;
