@@ -142,7 +142,12 @@ wxFileName cb_configFrame::GetConfigPath()
 {
    wxString sep = wxFileName::GetPathSeparator();
    wxStandardPaths& std_path = wxStandardPaths::Get();
+
+#ifdef __WXMSW__
    return wxFileName(std_path.GetUserConfigDir()+sep+"CodeBlocks"+sep+"default.conf");
+#else
+   return wxFileName(std_path.GetUserConfigDir()+sep+".config"+sep+"codeblocks"+sep+"default.conf");
+#endif
 }
 
 void cb_configFrame::ReadConfig(const wxFileName& fname)
@@ -169,7 +174,7 @@ void cb_configFrame::WriteConfig(const wxFileName& fname)
    backup_fname.SetName(fname.GetName()+'_'+timestamp);
    backup_fname.AppendDir("cb_config");
 
-   if(!wxDirExists(backup_fname.GetPath())) wxMkDir(backup_fname.GetPath());
+   if(!wxDirExists(backup_fname.GetPath())) wxMkdir(backup_fname.GetPath());
    wxCopyFile(fname.GetFullPath(),backup_fname.GetFullPath());
    wxMessageBox(backup_fname.GetFullPath(), _("Code::Blocks config backup file created"));
 

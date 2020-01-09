@@ -1,5 +1,8 @@
 #include "wxProcessList.h"
 
+#include <wx/arrstr.h>
+#include <wx/utils.h>
+
 #ifdef __WXMSW__
 #include <windows.h>
 #include <tlhelp32.h>
@@ -7,6 +10,24 @@
 
 // based on
 // https://forums.wxwidgets.org/viewtopic.php?t=20145&highlight=getprocesslist
+
+static void ExecuteCommand(const wxString& command, wxArrayString& output, long flags = wxEXEC_NODISABLE| wxEXEC_SYNC)
+{
+#ifdef __WXMSW__
+	wxExecute(command, output, flags);
+#else
+	FILE *fp;
+	char line[512];
+	memset(line, 0, sizeof(line));
+	fp = popen(command.mb_str(wxConvUTF8), "r");
+	while ( fgets( line, sizeof line, fp)) {
+              output.Add(wxString(line, wxConvUTF8));
+		memset(line, 0, sizeof(line));
+	}
+
+	pclose(fp);
+#endif
+}
 
 
 wxProcessList::wxProcessList()
@@ -62,14 +83,14 @@ std::vector<wxProcessEntry> wxProcessList::Get()
 		line = line.Trim().Trim(false);
 
 		//get the process ID
-		ProcessEntry entry;
+		wxProcessEntry entry;
 		wxString spid = line.BeforeFirst(wxT(' '));
 		spid.ToLong( &entry.pid );
 		entry.name = line.AfterFirst(wxT(' '));
 
 		if (entry.pid == 0 && i > 0) {
 			//probably this line belongs to the provious one
-			ProcessEntry e = proclist.back();
+			wxProcessEntry e = proclist.back();
 			proclist.pop_back();
 			e.name << entry.name;
 			proclist.push_back( e );
@@ -91,3 +112,4 @@ std::vector<wxProcessEntry> wxProcessList::Get(const wxString& substring)
    }
    return proclist;
 }
+

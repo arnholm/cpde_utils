@@ -115,7 +115,7 @@ void  SelectPanel::FillGlobals(wxml_node& root)
       if(gcv.get_child("ACTIVE",active)) {
          wxml_node str;
          if(active.get_child("str",str)) {
-            std::string active_set = str.get_value("");
+            wxString active_set = str.get_value("");
             m_global_text->SetLabel(active_set);
             m_globals->SetStringSelection(active_set);
          }
@@ -182,7 +182,7 @@ void  SelectPanel::FillCompilers(wxml_node& root)
             if(user_compiler.get_child("PARENT",parent)) {
                wxml_node str;
                if(parent.get_child("str",str)) {
-                  std::string parent_comp = str.get_value("");
+                  std::string parent_comp = str.get_value("").ToStdString();
                   std::transform(compiler_name.begin(),compiler_name.end(),compiler_name.begin(),::tolower);
 
                   // <compiler,parent_compiler> both in lowercase
@@ -198,7 +198,7 @@ void  SelectPanel::FillCompilers(wxml_node& root)
       if(compiler.get_child("DEFAULT_COMPILER",default_compiler)) {
          wxml_node str;
          if(default_compiler.get_child("str",str)) {
-            std::string active_comp = str.get_value("");
+            std::string active_comp = str.get_value("").ToStdString();
             m_compiler_parent->SetLabel('('+parent_compilers[active_comp]+')');
             std::transform(active_comp.begin(),active_comp.end(),active_comp.begin(),::toupper);
             m_compiler_text->SetLabel(active_comp);
