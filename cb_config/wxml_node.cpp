@@ -113,6 +113,13 @@ void wxml_node::deep_copy(wxml_node& source,const wxString& target_name)
    wxString tag_copy = (target_name.length() > 0)? target_name : tag();
    m_node->SetName(tag_copy);
 
+   // copy any attributes
+   wxXmlAttribute* a = m_node->GetAttributes();
+   while(a) {
+      m_node->AddAttribute(a->GetName(),a->GetValue());
+      a = a->GetNext();
+   }
+
    // clone the contents from the source node
    for(auto& source_child : source.get_children() ) {
       wxString child_tag = source_child.tag();

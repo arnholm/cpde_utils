@@ -25,7 +25,6 @@
 					<Add option="/D_CRT_NONSTDC_NO_DEPRECATE" />
 					<Add option="/D_CRT_SECURE_DEPRECATE" />
 					<Add directory="./" />
-					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="`$(CPDE_USR)\bin\wx-config.exe  --prefix=$(#wx) --wxcfg=$(#wx.debug) --libs`" />
@@ -53,7 +52,6 @@
 					<Add option="/D_CRT_NONSTDC_NO_DEPRECATE" />
 					<Add option="/D_CRT_SECURE_DEPRECATE" />
 					<Add directory="./" />
-					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="`$(CPDE_USR)\bin\wx-config.exe  --prefix=$(#wx) --wxcfg=$(#wx.release) --libs`" />
@@ -79,13 +77,12 @@
 					<Add option="-std=c++0x" />
 					<Add option="-W" />
 					<Add option="-fPIC" />
-					<Add option="-DNOPCH" />
 					<Add option="-fexceptions" />
-					<Add option="-D_DEBUG" />
 					<Add option="-g" />
 					<Add option="`$(#wx.config) --cxxflags --debug`" />
+					<Add option="-DNOPCH" />
+					<Add option="-D_DEBUG" />
 					<Add directory="./" />
-					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="`$(#wx.config) --libs std,aui --static --debug`" />
@@ -101,19 +98,17 @@
 					<Add option="-std=c++0x" />
 					<Add option="-W" />
 					<Add option="-fPIC" />
-					<Add option="-DNOPCH" />
 					<Add option="-fexceptions" />
 					<Add option="-Os" />
 					<Add option="`$(#wx.config) --cxxflags`" />
+					<Add option="-DNOPCH" />
 					<Add directory="./" />
-					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="`$(#wx.config) --libs std,aui --static`" />
 				</Linker>
 				<ExtraCommands>
 					<Add before="rm -f $(TARGET_OUTPUT_FILE)" />
-					<Add after="upx $(TARGET_OUTPUT_FILE)" />
 					<Add after="$(CPDE_USR)/bin/cpde_usr -bin -xi -project=$(PROJECT_NAME)  -root=$(PROJECT_DIR)  -build=$(TARGET_NAME)  -target=$(TARGET_OUTPUT_FILE)  -usr=$(CPDE_USR)" />
 					<Mode after="always" />
 				</ExtraCommands>
@@ -155,6 +150,9 @@
 					<wxPanel wxs="wxsmith/SelectPanel.wxs" src="SelectPanel.cpp" hdr="SelectPanel.h" fwddecl="0" i18n="1" name="SelectPanel" language="CPP" />
 				</resources>
 			</wxsmith>
+			<envvars />
+			<code_completion />
+			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

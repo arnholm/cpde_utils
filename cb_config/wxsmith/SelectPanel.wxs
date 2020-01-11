@@ -77,9 +77,6 @@
 									<label>Target Compiler Name</label>
 									<object class="sizeritem">
 										<object class="wxComboBox" name="ID_COMBOBOX1" variable="m_compiler_target" member="yes">
-											<content>
-												<item>MSVC</item>
-											</content>
 											<selection>0</selection>
 										</object>
 										<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>

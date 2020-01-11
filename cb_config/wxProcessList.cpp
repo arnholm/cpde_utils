@@ -21,7 +21,7 @@ static void ExecuteCommand(const wxString& command, wxArrayString& output, long 
 	memset(line, 0, sizeof(line));
 	fp = popen(command.mb_str(wxConvUTF8), "r");
 	while ( fgets( line, sizeof line, fp)) {
-              output.Add(wxString(line, wxConvUTF8));
+      output.Add(wxString(line, wxConvUTF8));
 		memset(line, 0, sizeof(line));
 	}
 

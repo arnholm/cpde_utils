@@ -3,6 +3,7 @@
 #include <algorithm>
 using namespace std;
 
+#include <wx/msgdlg.h>
 //(*InternalHeaders(SelectPanel)
 #include <wx/intl.h>
 #include <wx/string.h>
@@ -57,7 +58,6 @@ SelectPanel::SelectPanel(wxWindow* parent,wxWindowID id,const wxPoint& pos,const
 	StaticBoxSizer2->Add(m_compilers, 1, wxALL|wxEXPAND, 5);
 	StaticBoxSizer3 = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Target Compiler Name"));
 	m_compiler_target = new wxComboBox(this, ID_COMBOBOX1, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_COMBOBOX1"));
-	m_compiler_target->SetSelection( m_compiler_target->Append(_("MSVC")) );
 	StaticBoxSizer3->Add(m_compiler_target, 1, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	StaticBoxSizer2->Add(StaticBoxSizer3, 0, wxEXPAND, 5);
 	m_compiler_apply = new wxButton(this, ID_BUTTON2, _("Apply"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
@@ -71,6 +71,13 @@ SelectPanel::SelectPanel(wxWindow* parent,wxWindowID id,const wxPoint& pos,const
 	Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&SelectPanel::OnGlobalApplyClick);
 	Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&SelectPanel::OnCompilerApplyClick);
 	//*)
+
+#ifdef __WXMSW__
+   m_compiler_target->SetSelection( m_compiler_target->Append(_("MSVC")) );
+#else
+   m_compiler_target->SetSelection( m_compiler_target->Append(_("GCC")) );
+#endif
+
 }
 
 SelectPanel::~SelectPanel()
@@ -126,6 +133,11 @@ void  SelectPanel::FillGlobals(wxml_node& root)
 // apply new global variables set
 void SelectPanel::OnGlobalApplyClick(wxCommandEvent& event)
 {
+   if(m_globals->GetSelection() == wxNOT_FOUND) {
+      wxMessageBox("No global variable set selected", "Operation ignored");
+      return;
+   }
+
    wxml_node root = m_cb_config->get_root();
    if(root.tag() == "CodeBlocksConfig") {
 
@@ -213,6 +225,11 @@ void  SelectPanel::FillCompilers(wxml_node& root)
 // apply new compiler
 void SelectPanel::OnCompilerApplyClick(wxCommandEvent& event)
 {
+   if(m_compilers->GetSelection() == wxNOT_FOUND) {
+      wxMessageBox("No user defined compiler selected", "Operation ignored");
+      return;
+   }
+
    wxml_node root = m_cb_config->get_root();
    if(root.tag() == "CodeBlocksConfig") {
       wxml_node compiler;
@@ -222,11 +239,14 @@ void SelectPanel::OnCompilerApplyClick(wxCommandEvent& event)
          if(target_name != source_name) {
             wxml_node user_sets;
             if(compiler.get_child("user_sets",user_sets)) {
+
+               // get the compiler to copy from
                wxml_node source;
-               wxml_node target;
                user_sets.get_child(source_name,source);
 
-               // copy the compiler node to the target node
+               // copy the compiler node to the target node.
+               // If the target node does not exist it must be created first
+               wxml_node target;
                if(!user_sets.get_child(target_name,target)) {
                   target = user_sets.add_child(target_name);
                }
@@ -252,8 +272,11 @@ void SelectPanel::CopyCompiler(wxml_node& compiler, wxml_node& target, const std
 {
    wxml_node default_compiler;
    if(compiler.get_child("DEFAULT_COMPILER",default_compiler)) {
+
+      // perform a deep copy to clone the source compiler
       target.deep_copy(source,target_name);
 
+      // override the NAME element for the target compiler so it agrees with the defined target name
       wxml_node name;
       if(target.get_child("NAME",name)) {
          string target_name_upper = target_name;
@@ -264,6 +287,8 @@ void SelectPanel::CopyCompiler(wxml_node& compiler, wxml_node& target, const std
          }
       }
 
+      // set also the "parent" to reflect where it was copied from
+      // (however, this will be overriden by Code::Blocks)
       wxml_node parent;
       if(target.get_child("PARENT",parent)) {
          wxml_node str;
