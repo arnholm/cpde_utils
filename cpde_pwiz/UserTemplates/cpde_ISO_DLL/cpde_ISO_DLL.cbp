@@ -72,7 +72,7 @@
 				<Option output=".cmp\gcc\bin\Debug\%%%project_name_lowercase%%%d" prefix_auto="1" extension_auto="1"/>
 				<Option object_output=".cmp\gcc\obj\Debug\"/>
 				<Option type="3"/>
-				<Option compiler="gcc"/>
+				<Option compiler="gcc_generic"/>
 				<Option createDefFile="1"/>
 				<Option createStaticLib="1"/>
 				<Compiler>
@@ -96,7 +96,7 @@
 				<Option output=".cmp\gcc\bin\Release\%%%project_name_lowercase%%%" prefix_auto="1" extension_auto="1"/>
 				<Option object_output=".cmp\gcc\obj\Release\"/>
 				<Option type="3"/>
-				<Option compiler="gcc"/>
+				<Option compiler="gcc_generic"/>
 				<Option createDefFile="1"/>
 				<Option createStaticLib="1"/>
 				<Compiler>

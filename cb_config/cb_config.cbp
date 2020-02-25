@@ -68,10 +68,10 @@
 				</ExtraCommands>
 			</Target>
 			<Target title="GCC_Debug">
-				<Option output=".cmp/gcc/libcb_configd" prefix_auto="1" extension_auto="1" />
+				<Option output=".cmp/gcc/cb_configd" prefix_auto="0" extension_auto="1" />
 				<Option object_output=".cmp/gcc/obj/Debug/" />
 				<Option type="0" />
-				<Option compiler="gcc" />
+				<Option compiler="gcc_generic" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-std=c++0x" />
@@ -89,10 +89,10 @@
 				</Linker>
 			</Target>
 			<Target title="GCC_Release">
-				<Option output=".cmp/gcc/libcb_config" prefix_auto="1" extension_auto="1" />
+				<Option output=".cmp/gcc/cb_config" prefix_auto="0" extension_auto="1" />
 				<Option object_output=".cmp/gcc/obj/Release/" />
 				<Option type="0" />
-				<Option compiler="gcc" />
+				<Option compiler="gcc_generic" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-std=c++0x" />
