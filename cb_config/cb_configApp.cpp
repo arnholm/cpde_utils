@@ -20,7 +20,7 @@ bool cb_configApp::OnInit()
 {
     //(*AppInitialize
     bool wxsOK = true;
-    // wxInitAllImageHandlers();
+    wxInitAllImageHandlers();
     if ( wxsOK )
     {
     	cb_configFrame* Frame = new cb_configFrame(0);
