@@ -21,7 +21,6 @@
 //*)
 
 #include "SelectPanel.h"
-#include "xml_tree.h"
 
 class cb_configFrame: public wxFrame
 {

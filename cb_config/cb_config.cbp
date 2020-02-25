@@ -116,14 +116,12 @@
 		</Build>
 		<Compiler>
 			<Add directory="$(CPDE_USR)/include" />
-			<Add directory="$(#boost.include)" />
 		</Compiler>
 		<ResourceCompiler>
 			<Add directory="$(#wx)/include" />
 		</ResourceCompiler>
 		<Linker>
 			<Add directory="$(CPDE_USR)/lib" />
-			<Add directory="$(#boost.lib)" />
 		</Linker>
 		<Unit filename="SelectPanel.cpp" />
 		<Unit filename="SelectPanel.h" />
