@@ -25,9 +25,10 @@ REM Set address-model=32 for x86 32-bit builds
 REM Set address-model=64 for x86_amd64 cross compiler or native amd64 build
 REM Set architecture=x86 in all cases
 REM
-.\b2 -j8 toolset=msvc address-model=64 architecture=x86 link=static threading=multi runtime-link=shared --build-type=minimal 
-echo using python : 3.7 : D:\\cpde_dep\\3rdparty\\python\\python37 : D:\\cpde_dep\\3rdparty\\python\\python37\\include ; > user-config.jam
-.\b2 -j8 toolset=msvc  --user-config=user-config.jam address-model=64 architecture=x86 link=static threading=multi runtime-link=shared --with-python --build-type=minimal 
+REM Make sure the correct version of python is found
+echo using python : 3.7 : D:\\cpde_dep\\3rdparty\\python\\python37 : ; > user-config.jam
+REM 
+.\b2 -j8 toolset=msvc  --user-config=user-config.jam address-model=64 architecture=x86 link=static threading=multi runtime-link=shared --build-type=minimal 
 echo " --- boost build ended ---"
 pause
 
