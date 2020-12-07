@@ -7,7 +7,7 @@
 		<Option compiler="msvc"/>
 		<Build>
 			<Target title="MSVC_Debug">
-				<Option output=".cmp\msvc\%%%project_name_lowercase%%%d" prefix_auto="1" extension_auto="1"/>
+				<Option output=".cmp\msvc\%%%project_name_lowercase%%%d" prefix_auto="0" extension_auto="1"/>
 				<Option working_dir=""/>
 				<Option object_output=".cmp\msvc\obj\Debug\"/>
 				<Option type="2"/>
@@ -32,7 +32,7 @@
 				</ExtraCommands>
 			</Target>
 			<Target title="MSVC_Release">
-				<Option output=".cmp\msvc\%%%project_name_lowercase%%%" prefix_auto="1" extension_auto="1"/>
+				<Option output=".cmp\msvc\%%%project_name_lowercase%%%" prefix_auto="0" extension_auto="1"/>
 				<Option working_dir=""/>
 				<Option object_output=".cmp\msvc\obj\Release\"/>
 				<Option type="2"/>

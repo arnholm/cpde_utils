@@ -7,7 +7,7 @@
 		<Option compiler="msvc"/>
 		<Build>
 			<Target title="MSVC_Debug">
-				<Option output=".cmp\msvc\bin\Debug\%%%project_name_lowercase%%%d" prefix_auto="1" extension_auto="1"/>
+				<Option output=".cmp\msvc\bin\Debug\%%%project_name_lowercase%%%d" prefix_auto="0" extension_auto="1"/>
 				<Option object_output=".cmp\msvc\obj\Debug\"/>
 				<Option type="1"/>
 				<Option compiler="msvc"/>
@@ -33,7 +33,7 @@
 				</Linker>
 			</Target>
 			<Target title="MSVC_Release">
-				<Option output=".cmp\msvc\bin\Release\%%%project_name_lowercase%%%" prefix_auto="1" extension_auto="1"/>
+				<Option output=".cmp\msvc\bin\Release\%%%project_name_lowercase%%%" prefix_auto="0" extension_auto="1"/>
 				<Option object_output=".cmp\msvc\obj\Release\"/>
 				<Option type="1"/>
 				<Option compiler="msvc"/>
@@ -55,6 +55,10 @@
 					<Add option="/INCREMENTAL:NO"/>
 					<Add library="msvcrt.lib"/>
 				</Linker>
+				<ExtraCommands>
+					<Add after="$(CPDE_USR)/bin/cpde_usr -bin -xi -project=$(PROJECT_NAME)  -root=$(PROJECT_DIR)  -build=$(TARGET_NAME)  -target=$(TARGET_OUTPUT_FILE)  -usr=$(CPDE_USR)"/>
+					<Mode after="always"/>
+				</ExtraCommands>
 			</Target>
 			<Target title="GCC_Debug">
 				<Option output=".cmp/gcc/bin/Debug/%%%project_name_lowercase%%%d" prefix_auto="1" extension_auto="1"/>
@@ -95,7 +99,6 @@
 				</Linker>
 				<ExtraCommands>
 					<Add before="rm -f $(TARGET_OUTPUT_FILE)"/>
-					<Add after="upx $(TARGET_OUTPUT_FILE)"/>
 					<Add after="$(CPDE_USR)/bin/cpde_usr -bin -xi -project=$(PROJECT_NAME)  -root=$(PROJECT_DIR)  -build=$(TARGET_NAME)  -target=$(TARGET_OUTPUT_FILE)  -usr=$(CPDE_USR)"/>
 					<Mode after="always"/>
 				</ExtraCommands>
