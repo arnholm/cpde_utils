@@ -84,7 +84,7 @@
 				<Option compiler="gcc_generic" />
 				<Compiler>
 					<Add option="-Wall" />
-					<Add option="-std=c++0x" />
+					<Add option="-std=c++11" />
 					<Add option="-g" />
 					<Add option="-DNOPCH" />
 					<Add option="-D__WXDEBUG__" />
@@ -101,7 +101,7 @@
 				<Compiler>
 					<Add option="-Os" />
 					<Add option="-O2" />
-					<Add option="-std=c++0x" />
+					<Add option="-std=c++11" />
 					<Add option="-Wall" />
 					<Add option="-DNOPCH" />
 					<Add option="-D__WX__" />
