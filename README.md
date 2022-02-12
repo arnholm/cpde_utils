@@ -42,7 +42,7 @@ Typical invocation in a Code::Blocks post-build step:
 In this example $(CPDE_USR) evaluates an environment variable and $(PROJECT_NAME), $(PROJECT_DIR), $(TARGET_NAME) and $(TARGET_OUTPUT_FILE) are standard variables in Code::Blocks.
 
 ## wx-config command line syntax (Windows only)
-This version of wx-config is for Windows only (on Linux the syntax is different). The use of wx-config is only relevant when wxWidgets is ised in the project. Instead of setting up all include paths and libraries manually, wx-config will automatically generate this information, based on the location of the wxWidgets installation
+This version of wx-config is for Windows only (on Linux the syntax is different). The use of wx-config is only relevant when wxWidgets is used in the project. Instead of setting up all include paths and libraries manually, wx-config will automatically generate this information, based on the location of the wxWidgets installation
 
     Usage: wx-config [options]
     Options:
@@ -83,6 +83,8 @@ This is a stand-alone GUI application for image conversion. Useful for compiling
 
 # building cpde_utils for linux
 This description applies to 64 bit Ubuntu/Kubuntu etc. 
+
+UPDATE: The information below is not 100% up to date, see https://github.com/arnholm/cpde_3rdparty for scripts to build wxWidgets and other components on Windows and linux.
 
 cpde is based on the Code::Blocks IDE and build system, so you need to install it
     
