@@ -148,9 +148,6 @@
 					<wxPanel wxs="wxsmith/SelectPanel.wxs" src="SelectPanel.cpp" hdr="SelectPanel.h" fwddecl="0" i18n="1" name="SelectPanel" language="CPP" />
 				</resources>
 			</wxsmith>
-			<envvars />
-			<code_completion />
-			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

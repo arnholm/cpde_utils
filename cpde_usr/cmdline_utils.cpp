@@ -11,7 +11,7 @@
 // INCLUDING THE WARRANTIES OF DESIGN, MERCHANTABILITY AND FITNESS FOR
 // A PARTICULAR PURPOSE.
 // EndLicense:
-   
+
 #include "cmdline_utils.h"
 
 #include <wx/cmdline.h>  // command line parser
@@ -34,9 +34,9 @@ void ParserToMap(wxCmdLineParser& parser, CmdLineMap& cmdMap)
 void PrintMap(CmdLineMap& cmdMap, ostream& out)
 {
    for(CmdLineMap::iterator i=cmdMap.begin(); i!= cmdMap.end(); i++) {
-      out << i->first.fn_str();
+      out << i->first.ToStdString();
       if(i->second.length() > 0) {
-         out << wxT("=") << i->second.fn_str();
+         out << wxT("=") << i->second.ToStdString();
       }
       out << endl;
    }
