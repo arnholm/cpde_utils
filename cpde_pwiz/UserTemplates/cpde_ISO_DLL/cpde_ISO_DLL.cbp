@@ -85,7 +85,6 @@
 					<Add option="-fPIC" />
 					<Add option="-fexceptions" />
 					<Add option="-g" />
-					<Add option="-Wno-unused-result" />
 					<Add option="-DNOPCH" />
 					<Add option="-D_DEBUG" />
 					<Add directory="./" />
@@ -106,12 +105,11 @@
 				<Option createDefFile="1"/>
 				<Option createStaticLib="1"/>
 				<Compiler>
-					<Add option="-std=c++17" />
-					<Add option="-W" />
-					<Add option="-fPIC" />
-					<Add option="-fexceptions" />
 					<Add option="-Os" />
-					<Add option="-Wno-unused-result" />
+					<Add option="-std=c++17" />
+					<Add option="-fPIC" />
+					<Add option="-W" />
+					<Add option="-fexceptions" />
 					<Add option="-DNOPCH" />
 					<Add directory="./" />
 				</Compiler>

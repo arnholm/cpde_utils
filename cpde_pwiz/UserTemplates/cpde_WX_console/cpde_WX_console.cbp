@@ -12,17 +12,19 @@
 				<Option type="1"/>
 				<Option compiler="msvc"/>
 				<Compiler>
-					<Add option="/MDd"/>
-					<Add option="/Od"/>
-					<Add option="/RTCsu"/>
-					<Add option="/Fd$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).pdb"/>
-					<Add option="/GF"/>
-					<Add option="/EHsc"/>
-					<Add option="/W3"/>
-					<Add option="`$(CPDE_USR)\bin\wx-config.exe --prefix=$(#wx) --wxcfg=$(#wx.debug) --cxxflags`"/>
-					<Add option="/D_CRT_SECURE_NO_WARNINGS"/>
-					<Add option="/D_CRT_NONSTDC_NO_DEPRECATE"/>
-					<Add option="/D_CRT_SECURE_DEPRECATE"/>
+					<Add option="/MDd" />
+					<Add option="/Od" />
+					<Add option="/W3" />
+					<Add option="/GF" />
+					<Add option="/std:c++14" />
+					<Add option="/RTCsu" />
+					<Add option="/Fd$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).pdb" />
+					<Add option="/EHsc" />
+					<Add option="`$(CPDE_USR)\bin\wx-config.exe --prefix=$(#wx) --wxcfg=$(#wx.debug) --cxxflags`" />
+					<Add option="/D_CRT_SECURE_NO_WARNINGS" />
+					<Add option="/D_CRT_NONSTDC_NO_DEPRECATE" />
+					<Add option="/D_CRT_SECURE_DEPRECATE" />
+					<Add directory="./" />
 				</Compiler>
 				<Linker>
 					<Add option="`$(CPDE_USR)\bin\wx-config.exe  --prefix=$(#wx) --wxcfg=$(#wx.debug) --libs`"/>
@@ -38,15 +40,17 @@
 				<Option type="1"/>
 				<Option compiler="msvc"/>
 				<Compiler>
-					<Add option="/MD"/>
-					<Add option="/Ox"/>
-					<Add option="/GF"/>
-					<Add option="/EHsc"/>
-					<Add option="/W3"/>
-					<Add option="`$(CPDE_USR)\bin\wx-config.exe --prefix=$(#wx) --wxcfg=$(#wx.release) --cxxflags`"/>
-					<Add option="/D_CRT_SECURE_NO_WARNINGS"/>
-					<Add option="/D_CRT_NONSTDC_NO_DEPRECATE"/>
-					<Add option="/D_CRT_SECURE_DEPRECATE"/>
+					<Add option="/MD" />
+					<Add option="/Ox" />
+					<Add option="/W3" />
+					<Add option="/GF" />
+					<Add option="/std:c++14" />
+					<Add option="/EHsc" />
+					<Add option="`$(CPDE_USR)\bin\wx-config.exe --prefix=$(#wx) --wxcfg=$(#wx.release) --cxxflags`" />
+					<Add option="/D_CRT_SECURE_NO_WARNINGS" />
+					<Add option="/D_CRT_NONSTDC_NO_DEPRECATE" />
+					<Add option="/D_CRT_SECURE_DEPRECATE" />
+					<Add directory="./" />
 				</Compiler>
 				<Linker>
 					<Add option="`$(CPDE_USR)\bin\wx-config.exe  --prefix=$(#wx) --wxcfg=$(#wx.release) --libs`"/>
@@ -56,8 +60,8 @@
 					<Add library="msvcrt.lib"/>
 				</Linker>
 				<ExtraCommands>
-					<Add after="$(CPDE_USR)/bin/cpde_usr -bin -xi -project=$(PROJECT_NAME)  -root=$(PROJECT_DIR)  -build=$(TARGET_NAME)  -target=$(TARGET_OUTPUT_FILE)  -usr=$(CPDE_USR)"/>
-					<Mode after="always"/>
+					<Add after="$(CPDE_USR)\bin\cpde_usr -bin -xi -project=$(PROJECT_NAME)  -root=$(PROJECT_DIR)  -build=$(TARGET_NAME)  -target=$(TARGET_OUTPUT_FILE)  -usr=$(CPDE_USR)" />
+					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
 			<Target title="GCC_Debug">
@@ -66,14 +70,17 @@
 				<Option type="1"/>
 				<Option compiler="gcc_generic"/>
 				<Compiler>
-					<Add option="-std=c++11"/>
-					<Add option="-W"/>
-					<Add option="-fPIC"/>
-					<Add option="-DNOPCH"/>
-					<Add option="-fexceptions"/>
-					<Add option="-D_DEBUG"/>
-					<Add option="-g"/>
-					<Add option="`$(#wx.config) --cxxflags --debug`"/>
+					<Add option="-std=c++14"/>
+					<Add option="-W" />
+					<Add option="-fPIC" />
+					<Add option="-fexceptions" />
+					<Add option="-g" />
+					<Add option="`$(#wx.config) --cxxflags --debug`" />
+					<Add option="-Wno-deprecated-copy" />
+					<Add option="-Wno-ignored-qualifiers" />
+					<Add option="-DNOPCH" />
+					<Add option="-D_DEBUG" />
+					<Add directory="./" />
 				</Compiler>
 				<Linker>
 					<Add option="`$(#wx.config) --libs std,aui --static --debug`"/>
@@ -86,13 +93,16 @@
 				<Option compiler="gcc_generic"/>
 				<Option projectLinkerOptionsRelation="2"/>
 				<Compiler>
-					<Add option="-std=c++11"/>
-					<Add option="-W"/>
-					<Add option="-fPIC"/>
-					<Add option="-DNOPCH"/>
-					<Add option="-fexceptions"/>
-					<Add option="-Os"/>
-					<Add option="`$(#wx.config) --cxxflags`"/>
+					<Add option="-std=c++14"/>
+					<Add option="-W" />
+					<Add option="-fPIC" />
+					<Add option="-fexceptions" />
+					<Add option="-Os" />
+					<Add option="`$(#wx.config) --cxxflags`" />
+					<Add option="-Wno-deprecated-copy" />
+					<Add option="-Wno-ignored-qualifiers" />
+					<Add option="-DNOPCH" />
+					<Add directory="./" />
 				</Compiler>
 				<Linker>
 					<Add option="`$(#wx.config) --libs std,aui --static`"/>
