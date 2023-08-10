@@ -5,11 +5,14 @@
 		<Project filename="cpde_usr/cpde_usr.cbp">
 			<Depends filename="wx-config/wx-config.cbp" />
 		</Project>
+		<Project filename="cpde_wait/cpde_wait.cbp" />
 		<Project filename="git_gui_win/git_gui_win.cbp">
 			<Depends filename="cpde_usr/cpde_usr.cbp" />
+			<Depends filename="cpde_wait/cpde_wait.cbp" />
 		</Project>
 		<Project filename="Bmp2Xpm/Bmp2Xpm.cbp">
 			<Depends filename="cpde_usr/cpde_usr.cbp" />
+			<Depends filename="cpde_wait/cpde_wait.cbp" />
 		</Project>
 		<Project filename="as_class/as_class.cbp" />
 		<Project filename="cpde_pwiz/cpde_pwiz.cbp">
