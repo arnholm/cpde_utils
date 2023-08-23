@@ -11,7 +11,7 @@
 // INCLUDING THE WARRANTIES OF DESIGN, MERCHANTABILITY AND FITNESS FOR
 // A PARTICULAR PURPOSE.
 // EndLicense:
-   
+
 #include "file_utils.h"
 
 #include <iostream>
@@ -134,7 +134,24 @@ size_t wxCopyFiles(const wxString& root_dir_from, const vector<wxString>& file_p
       if(wxfilename.FileExists()) {
          ::wxRemoveFile(path_target);
       }
-      bool copy_ok = wxCopyFile(path_source,path_target,true);
+
+      // try to copy the file up to numtry times with a delay between attempts
+      // Sometimes 'antivirus' software can cause problems by locking the file we are copying
+      const size_t numtry=5;
+      bool copy_ok = false;
+      for(size_t i=0;i<numtry; i++) {
+         copy_ok = wxCopyFile(path_source,path_target,true);
+         if(copy_ok)break;
+
+         wxString txt = "***Copy_RETRY ";
+         ostringstream sout;
+         sout << " " << setw(2) << i+1 << " of " <<  setw(2) << relative_file_paths.size() << ": " << setw(50) << left << file_name << " ==> " << path_target;
+         txt += sout.str();
+         echo(txt);
+
+         if(i<1)wxBell();
+         wxMilliSleep(100);
+      }
       if(copy_ok) {
 
          // copy also the date/time info
