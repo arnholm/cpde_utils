@@ -16,19 +16,19 @@
 								<object class="wxStaticText" name="ID_STATICTEXT7" variable="m_template_root" member="yes">
 									<label></label>
 								</object>
-								<flag>wxEXPAND|wxALIGN_LEFT|wxALIGN_BOTTOM</flag>
+								<flag>wxEXPAND</flag>
 								<border>5</border>
 								<option>1</option>
 							</object>
 						</object>
-						<flag>wxBOTTOM|wxEXPAND|wxALIGN_LEFT|wxALIGN_BOTTOM</flag>
+						<flag>wxBOTTOM|wxEXPAND</flag>
 						<border>5</border>
 					</object>
 					<object class="sizeritem">
 						<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
 							<label>Select project template</label>
 						</object>
-						<flag>wxTOP|wxLEFT|wxRIGHT|wxALIGN_LEFT|wxALIGN_BOTTOM</flag>
+						<flag>wxTOP|wxLEFT|wxRIGHT|wxALIGN_LEFT</flag>
 						<border>5</border>
 					</object>
 					<object class="sizeritem">
@@ -37,7 +37,7 @@
 							<size>521,150</size>
 							<handler function="OnTextEnterRootOrProject" entry="EVT_LISTBOX" />
 						</object>
-						<flag>wxBOTTOM|wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxALL|wxEXPAND</flag>
 						<border>5</border>
 						<option>1</option>
 					</object>
@@ -45,7 +45,7 @@
 						<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticText3" member="yes">
 							<label>Root folder to create project folder in</label>
 						</object>
-						<flag>wxTOP|wxLEFT|wxRIGHT|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxTOP|wxLEFT|wxRIGHT|wxALIGN_LEFT</flag>
 						<border>5</border>
 					</object>
 					<object class="sizeritem">
@@ -68,28 +68,28 @@
 								<border>5</border>
 							</object>
 						</object>
-						<flag>wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxEXPAND</flag>
 						<border>5</border>
 					</object>
 					<object class="sizeritem">
 						<object class="wxStaticText" name="ID_STATICTEXT2" variable="StaticText2" member="yes">
 							<label>Project Title</label>
 						</object>
-						<flag>wxLEFT|wxRIGHT|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxLEFT|wxRIGHT|wxALIGN_LEFT</flag>
 						<border>5</border>
 					</object>
 					<object class="sizeritem">
 						<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="m_project_title" member="yes">
 							<handler function="OnTextEnterRootOrProject" entry="EVT_TEXT" />
 						</object>
-						<flag>wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxLEFT|wxRIGHT|wxEXPAND</flag>
 						<border>5</border>
 					</object>
 					<object class="sizeritem">
 						<object class="wxStaticText" name="ID_STATICTEXT5" variable="StaticText4" member="yes">
 							<label>Final path to project</label>
 						</object>
-						<flag>wxTOP|wxLEFT|wxRIGHT|wxALIGN_LEFT|wxALIGN_BOTTOM</flag>
+						<flag>wxTOP|wxLEFT|wxRIGHT|wxALIGN_LEFT</flag>
 						<border>5</border>
 					</object>
 					<object class="sizeritem">
@@ -105,7 +105,7 @@
 								<face>Arial</face>
 							</font>
 						</object>
-						<flag>wxBOTTOM|wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_LEFT|wxALIGN_BOTTOM</flag>
+						<flag>wxBOTTOM|wxLEFT|wxRIGHT|wxEXPAND</flag>
 						<border>5</border>
 					</object>
 					<object class="sizeritem">
@@ -113,18 +113,18 @@
 							<label>Create project file</label>
 							<handler function="OnCreateProjectButtonClick" entry="EVT_BUTTON" />
 						</object>
-						<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxALL|wxEXPAND</flag>
 						<border>5</border>
 					</object>
 					<object class="sizeritem">
 						<object class="wxStaticText" name="ID_STATICTEXT4" variable="m_info_text" member="yes">
 							<label></label>
 						</object>
-						<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_BOTTOM</flag>
+						<flag>wxALL|wxEXPAND</flag>
 						<border>5</border>
 					</object>
 				</object>
-				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<flag>wxALL|wxEXPAND</flag>
 				<border>5</border>
 			</object>
 			<object class="sizeritem">
@@ -134,7 +134,7 @@
 							<label>zip templates...</label>
 							<handler function="OnZipButtonClick" entry="EVT_BUTTON" />
 						</object>
-						<flag>wxALL|wxALIGN_LEFT|wxALIGN_BOTTOM</flag>
+						<flag>wxALL|wxALIGN_BOTTOM</flag>
 						<border>5</border>
 						<option>1</option>
 					</object>
@@ -142,7 +142,7 @@
 						<object class="wxStaticLine" name="ID_STATICLINE1" variable="StaticLine1" member="yes">
 							<size>10,-1</size>
 						</object>
-						<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxALL|wxEXPAND</flag>
 						<border>4</border>
 					</object>
 					<object class="sizeritem">
@@ -155,7 +155,7 @@
 						<option>1</option>
 					</object>
 				</object>
-				<flag>wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<flag>wxEXPAND</flag>
 				<border>4</border>
 			</object>
 		</object>

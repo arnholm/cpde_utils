@@ -25,13 +25,13 @@
 #define CPDE_PWIZMAIN_H
 
 //(*Headers(cpde_pwizDialog)
-#include <wx/sizer.h>
-#include <wx/stattext.h>
-#include <wx/textctrl.h>
-#include <wx/listbox.h>
-#include <wx/statline.h>
 #include <wx/button.h>
 #include <wx/dialog.h>
+#include <wx/listbox.h>
+#include <wx/sizer.h>
+#include <wx/statline.h>
+#include <wx/stattext.h>
+#include <wx/textctrl.h>
 //*)
 
 #include <wx/config.h>
@@ -74,23 +74,23 @@ class cpde_pwizDialog: public wxDialog
         //*)
 
         //(*Declarations(cpde_pwizDialog)
-        wxButton* BrowseButton;
-        wxButton* CreateProjectButton;
-        wxStaticText* StaticText2;
-        wxTextCtrl* m_project_root;
-        wxStaticText* m_info_text;
-        wxStaticText* StaticText1;
-        wxBoxSizer* BoxSizer2;
-        wxTextCtrl* m_project_title;
-        wxStaticText* StaticText3;
-        wxStaticText* m_template_root;
-        wxButton* Button2;
-        wxStaticText* m_final;
-        wxStaticLine* StaticLine1;
-        wxListBox* m_list;
         wxBoxSizer* BoxSizer1;
+        wxBoxSizer* BoxSizer2;
+        wxButton* BrowseButton;
+        wxButton* Button2;
+        wxButton* CreateProjectButton;
         wxButton* ZipButton;
+        wxListBox* m_list;
+        wxStaticLine* StaticLine1;
+        wxStaticText* StaticText1;
+        wxStaticText* StaticText2;
+        wxStaticText* StaticText3;
         wxStaticText* StaticText4;
+        wxStaticText* m_final;
+        wxStaticText* m_info_text;
+        wxStaticText* m_template_root;
+        wxTextCtrl* m_project_root;
+        wxTextCtrl* m_project_title;
         //*)
 
         DECLARE_EVENT_TABLE()
