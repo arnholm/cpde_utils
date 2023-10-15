@@ -3,7 +3,7 @@
 	<object class="wxDialog" name="Bmp2XpmDialog">
 		<title>BMP2XPM - C. Arnholm 2009</title>
 		<id_arg>0</id_arg>
-		<style>wxDEFAULT_DIALOG_STYLE|wxSYSTEM_MENU|wxRESIZE_BORDER|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxRAISED_BORDER</style>
+		<style>wxDEFAULT_DIALOG_STYLE|wxSYSTEM_MENU|wxRESIZE_BORDER|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxBORDER_RAISED</style>
 		<handler function="OnResize" entry="EVT_SIZE" />
 		<object class="wxBoxSizer" variable="BoxSizer1" member="yes">
 			<orient>wxVERTICAL</orient>
@@ -25,14 +25,14 @@
 								<object class="wxStaticText" name="ID_STATICTEXT4" variable="m_outfile" member="yes">
 									<label></label>
 									<size>500,-1</size>
-									<style>wxSUNKEN_BORDER</style>
+									<style>wxBORDER_SUNKEN</style>
 								</object>
-								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxALL|wxEXPAND</flag>
 								<border>5</border>
 								<option>1</option>
 							</object>
 						</object>
-						<flag>wxTOP|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxTOP|wxEXPAND</flag>
 						<border>5</border>
 						<option>1</option>
 					</object>
@@ -79,7 +79,7 @@
 								</object>
 							</object>
 						</object>
-						<flag>wxTOP|wxBOTTOM|wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP</flag>
+						<flag>wxTOP|wxBOTTOM|wxEXPAND</flag>
 						<border>5</border>
 					</object>
 					<object class="sizeritem">
@@ -108,12 +108,12 @@
 								<object class="wxSlider" name="ID_SLIDER1" variable="ZoomSlider" member="yes">
 									<max>10</max>
 								</object>
-								<flag>wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxLEFT|wxRIGHT|wxEXPAND</flag>
 								<border>5</border>
 								<option>1</option>
 							</object>
 						</object>
-						<flag>wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxEXPAND</flag>
 						<border>5</border>
 					</object>
 					<object class="sizeritem">
@@ -121,11 +121,11 @@
 							<size>-1,240</size>
 							<handler function="OnGraphRightDown" entry="EVT_RIGHT_DOWN" />
 						</object>
-						<flag>wxBOTTOM|wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxALL|wxEXPAND</flag>
 						<border>5</border>
 					</object>
 				</object>
-				<flag>wxBOTTOM|wxLEFT|wxRIGHT|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+				<flag>wxBOTTOM|wxLEFT|wxRIGHT|wxALIGN_LEFT</flag>
 				<border>5</border>
 			</object>
 		</object>

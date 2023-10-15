@@ -96,20 +96,20 @@ END_EVENT_TABLE()
 Bmp2XpmDialog::Bmp2XpmDialog(wxWindow* parent,wxWindowID id)
 {
     //(*Initialize(Bmp2XpmDialog)
-    wxButton* ChangeDir;
-    wxBoxSizer* BoxSizer5;
     wxBoxSizer* BoxSizer2;
+    wxBoxSizer* BoxSizer5;
+    wxButton* ChangeDir;
     wxButton* SaveXPM;
 
-    Create(parent, wxID_ANY, _("BMP2XPM - C. Arnholm 2009"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxSYSTEM_MENU|wxRESIZE_BORDER|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxRAISED_BORDER, _T("wxID_ANY"));
+    Create(parent, wxID_ANY, _("BMP2XPM - C. Arnholm 2009"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxSYSTEM_MENU|wxRESIZE_BORDER|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxBORDER_RAISED, _T("wxID_ANY"));
     BoxSizer1 = new wxBoxSizer(wxVERTICAL);
     BoxSizer3 = new wxBoxSizer(wxVERTICAL);
     BoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
     ChangeDir = new wxButton(this, ID_BUTTON4, _("OutDir ..."), wxDefaultPosition, wxSize(80,-1), 0, wxDefaultValidator, _T("ID_BUTTON4"));
     BoxSizer5->Add(ChangeDir, 0, wxRIGHT|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    m_outfile = new wxStaticText(this, ID_STATICTEXT4, wxEmptyString, wxDefaultPosition, wxSize(500,-1), wxSUNKEN_BORDER, _T("ID_STATICTEXT4"));
-    BoxSizer5->Add(m_outfile, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    BoxSizer3->Add(BoxSizer5, 1, wxTOP|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    m_outfile = new wxStaticText(this, ID_STATICTEXT4, wxEmptyString, wxDefaultPosition, wxSize(500,-1), wxBORDER_SUNKEN, _T("ID_STATICTEXT4"));
+    BoxSizer5->Add(m_outfile, 1, wxALL|wxEXPAND, 5);
+    BoxSizer3->Add(BoxSizer5, 1, wxTOP|wxEXPAND, 5);
     Panel1 = new wxPanel(this, ID_PANEL2, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL2"));
     BoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
     OpenBmp = new wxButton(Panel1, ID_BUTTON3, _("Open BMP..."), wxDefaultPosition, wxSize(80,-1), 0, wxDefaultValidator, _T("ID_BUTTON3"));
@@ -125,9 +125,7 @@ Bmp2XpmDialog::Bmp2XpmDialog(wxWindow* parent,wxWindowID id)
     m_sticky->SetValue(false);
     BoxSizer2->Add(m_sticky, 0, wxTOP|wxLEFT|wxRIGHT|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     Panel1->SetSizer(BoxSizer2);
-    BoxSizer2->Fit(Panel1);
-    BoxSizer2->SetSizeHints(Panel1);
-    BoxSizer3->Add(Panel1, 0, wxTOP|wxBOTTOM|wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP, 5);
+    BoxSizer3->Add(Panel1, 0, wxTOP|wxBOTTOM|wxEXPAND, 5);
     BoxSizer4 = new wxBoxSizer(wxHORIZONTAL);
     m_transparent = new wxCheckBox(this, ID_CHECKBOX2, _("Bckg. col:"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX2"));
     m_transparent->SetValue(true);
@@ -137,22 +135,21 @@ Bmp2XpmDialog::Bmp2XpmDialog(wxWindow* parent,wxWindowID id)
     StaticText1 = new wxStaticText(this, ID_STATICTEXT1, _("(RMB)"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT1"));
     BoxSizer4->Add(StaticText1, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     ZoomSlider = new wxSlider(this, ID_SLIDER1, 0, 0, 10, wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_SLIDER1"));
-    BoxSizer4->Add(ZoomSlider, 1, wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    BoxSizer3->Add(BoxSizer4, 0, wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer4->Add(ZoomSlider, 1, wxLEFT|wxRIGHT|wxEXPAND, 5);
+    BoxSizer3->Add(BoxSizer4, 0, wxEXPAND, 5);
     m_graph = new wxPanel(this, ID_PANEL1, wxDefaultPosition, wxSize(-1,240), wxTAB_TRAVERSAL, _T("ID_PANEL1"));
-    BoxSizer3->Add(m_graph, 0, wxBOTTOM|wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
-    BoxSizer1->Add(BoxSizer3, 0, wxBOTTOM|wxLEFT|wxRIGHT|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer3->Add(m_graph, 0, wxALL|wxEXPAND, 5);
+    BoxSizer1->Add(BoxSizer3, 0, wxBOTTOM|wxLEFT|wxRIGHT|wxALIGN_LEFT, 5);
     SetSizer(BoxSizer1);
     Timer1.SetOwner(this, ID_TIMER1);
-    BoxSizer1->Fit(this);
     BoxSizer1->SetSizeHints(this);
 
-    Connect(ID_BUTTON4,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&Bmp2XpmDialog::OnChangeDirClick);
-    Connect(ID_BUTTON3,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&Bmp2XpmDialog::OnOpenBmpClick);
-    Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&Bmp2XpmDialog::OnSaveXPMClick);
-    m_graph->Connect(wxEVT_RIGHT_DOWN,(wxObjectEventFunction)&Bmp2XpmDialog::OnGraphRightDown,0,this);
-    Connect(ID_TIMER1,wxEVT_TIMER,(wxObjectEventFunction)&Bmp2XpmDialog::OnTimer1Trigger);
-    Connect(wxEVT_SIZE,(wxObjectEventFunction)&Bmp2XpmDialog::OnResize);
+    Connect(ID_BUTTON4, wxEVT_COMMAND_BUTTON_CLICKED, (wxObjectEventFunction)&Bmp2XpmDialog::OnChangeDirClick);
+    Connect(ID_BUTTON3, wxEVT_COMMAND_BUTTON_CLICKED, (wxObjectEventFunction)&Bmp2XpmDialog::OnOpenBmpClick);
+    Connect(ID_BUTTON1, wxEVT_COMMAND_BUTTON_CLICKED, (wxObjectEventFunction)&Bmp2XpmDialog::OnSaveXPMClick);
+    m_graph->Connect(wxEVT_RIGHT_DOWN, (wxObjectEventFunction)&Bmp2XpmDialog::OnGraphRightDown, NULL, this);
+    Connect(ID_TIMER1, wxEVT_TIMER, (wxObjectEventFunction)&Bmp2XpmDialog::OnTimer1Trigger);
+    Connect(wxEVT_SIZE, (wxObjectEventFunction)&Bmp2XpmDialog::OnResize);
     //*)
 
 

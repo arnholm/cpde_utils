@@ -25,14 +25,14 @@
 #define BMP2XPMMAIN_H
 
 //(*Headers(Bmp2XpmDialog)
-#include <wx/sizer.h>
-#include <wx/stattext.h>
-#include <wx/checkbox.h>
-#include <wx/slider.h>
-#include <wx/panel.h>
-#include <wx/statbmp.h>
 #include <wx/button.h>
+#include <wx/checkbox.h>
 #include <wx/dialog.h>
+#include <wx/panel.h>
+#include <wx/sizer.h>
+#include <wx/slider.h>
+#include <wx/statbmp.h>
+#include <wx/stattext.h>
 #include <wx/timer.h>
 //*)
 #include <wx/image.h>
@@ -82,20 +82,20 @@ class Bmp2XpmDialog: public wxDialog
         //*)
 
         //(*Declarations(Bmp2XpmDialog)
-        wxBoxSizer* BoxSizer4;
-        wxStaticBitmap* m_circle_bitmap;
-        wxCheckBox* m_save_ico;
-        wxButton* OpenBmp;
-        wxPanel* m_graph;
-        wxPanel* Panel1;
-        wxStaticText* StaticText1;
-        wxStaticBitmap* BkgBitmap;
-        wxStaticText* m_outfile;
         wxBoxSizer* BoxSizer1;
-        wxCheckBox* m_sticky;
-        wxSlider* ZoomSlider;
         wxBoxSizer* BoxSizer3;
+        wxBoxSizer* BoxSizer4;
+        wxButton* OpenBmp;
+        wxCheckBox* m_save_ico;
+        wxCheckBox* m_sticky;
         wxCheckBox* m_transparent;
+        wxPanel* Panel1;
+        wxPanel* m_graph;
+        wxSlider* ZoomSlider;
+        wxStaticBitmap* BkgBitmap;
+        wxStaticBitmap* m_circle_bitmap;
+        wxStaticText* StaticText1;
+        wxStaticText* m_outfile;
         wxTimer Timer1;
         //*)
 
