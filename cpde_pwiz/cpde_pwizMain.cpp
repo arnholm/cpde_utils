@@ -11,7 +11,7 @@
 // INCLUDING THE WARRANTIES OF DESIGN, MERCHANTABILITY AND FITNESS FOR
 // A PARTICULAR PURPOSE.
 // EndLicense:
-   
+
 /***************************************************************
  * Name:      cpde_pwizMain.cpp
  * Purpose:   Code for Application Frame
@@ -106,7 +106,7 @@ cpde_pwizDialog::cpde_pwizDialog(wxWindow* parent,wxWindowID id)
     BoxSizer3->Add(BoxSizer6, 0, wxBOTTOM|wxEXPAND, 5);
     StaticText1 = new wxStaticText(this, ID_STATICTEXT1, _("Select project template"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT1"));
     BoxSizer3->Add(StaticText1, 0, wxTOP|wxLEFT|wxRIGHT|wxALIGN_LEFT, 5);
-    m_list = new wxListBox(this, ID_LISTBOX1, wxDefaultPosition, wxSize(521,150), 0, 0, 0, wxDefaultValidator, _T("ID_LISTBOX1"));
+    m_list = new wxListBox(this, ID_LISTBOX1, wxDefaultPosition, wxSize(521,150), 0, 0, wxLB_SORT, wxDefaultValidator, _T("ID_LISTBOX1"));
     BoxSizer3->Add(m_list, 1, wxALL|wxEXPAND, 5);
     StaticText3 = new wxStaticText(this, ID_STATICTEXT3, _("Root folder to create project folder in"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT3"));
     BoxSizer3->Add(StaticText3, 0, wxTOP|wxLEFT|wxRIGHT|wxALIGN_LEFT, 5);

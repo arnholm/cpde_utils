@@ -35,6 +35,7 @@
 						<object class="wxListBox" name="ID_LISTBOX1" variable="m_list" member="yes">
 							<default>-1</default>
 							<size>521,150</size>
+							<style>wxLB_SORT</style>
 							<handler function="OnTextEnterRootOrProject" entry="EVT_LISTBOX" />
 						</object>
 						<flag>wxALL|wxEXPAND</flag>
